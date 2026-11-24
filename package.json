@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "catalogo": "node src/services/baixar-catalogo.js",
     "build": "node src/services/baixar-catalogo.js && astro build && node src/revisar/contar.js",
     "preview": "astro preview",
     "test": "node --test src/ferramenta/ferramenta.test.js src/sacola/sacola.test.js src/proxima-torra/proxima-torra.test.js src/services/painel-regras.test.js supabase/functions/_shared/validar-pedido.test.js",

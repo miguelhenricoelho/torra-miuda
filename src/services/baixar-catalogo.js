@@ -4,6 +4,12 @@
 import { writeFileSync } from 'node:fs';
 import { createClient } from '@supabase/supabase-js';
 
+// Rodando no computador, as chaves ficam no .env; na hospedagem, nas variáveis do painel dela.
+// O Node não lê o .env sozinho, então carregamos aqui (sem .env, segue com as variáveis do ambiente).
+try {
+  process.loadEnvFile();
+} catch {}
+
 const destino = new URL('../dados/catalogo.json', import.meta.url);
 const url = process.env.PUBLIC_SUPABASE_URL;
 const chave = process.env.PUBLIC_SUPABASE_ANON_KEY;
