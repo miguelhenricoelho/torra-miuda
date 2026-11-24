@@ -1,0 +1,54 @@
+.torra-clara {
+  padding-block: var(--esp-secao);
+  background: var(--cor-mata);
+  color: var(--cor-nevoa);
+}
+.torra-clara .rotulo {
+  color: var(--cor-nevoa-70);
+}
+.torra-clara__grade {
+  display: grid;
+  gap: var(--esp-7);
+  align-items: center;
+}
+.torra-clara__texto {
+  display: grid;
+  gap: var(--esp-4);
+}
+.torra-clara h2 {
+  font-size: var(--tam-h2);
+  max-width: 20ch;
+}
+.torra-clara__texto p {
+  max-width: 48ch;
+  font-size: var(--tam-texto-maior);
+}
+.torra-clara__frase em {
+  font-family: var(--fonte-titulo);
+  font-size: var(--tam-h3);
+  font-weight: 500;
+}
+.torra-clara__regua {
+  display: grid;
+  gap: var(--esp-5);
+}
+.torra-clara__notas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--esp-4);
+  color: var(--cor-nevoa-70);
+}
+.torra-clara__notas strong {
+  display: block;
+  color: var(--cor-nevoa);
+  font-weight: 600;
+}
+.torra-clara__notas p:last-child {
+  text-align: right;
+}
+@media (min-width: 1024px) {
+  .torra-clara__grade {
+    grid-template-columns: 6fr 5fr;
+    gap: var(--esp-8);
+  }
+}

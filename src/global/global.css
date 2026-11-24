@@ -1,0 +1,481 @@
+/* ===== Fontes (hospedadas no próprio site, licença OFL) ===== */
+@font-face {
+  font-family: 'Alegreya';
+  src: url('/fontes/alegreya-latin-500-normal.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Alegreya';
+  src: url('/fontes/alegreya-latin-600-normal.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Alegreya';
+  src: url('/fontes/alegreya-latin-500-italic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Schibsted Grotesk';
+  src: url('/fontes/schibsted-grotesk-latin-400-normal.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Schibsted Grotesk';
+  src: url('/fontes/schibsted-grotesk-latin-500-normal.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Schibsted Grotesk';
+  src: url('/fontes/schibsted-grotesk-latin-600-normal.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+
+/* ===== Tokens ===== */
+:root {
+  /* Paleta (DNA, seção 5) */
+  --cor-nevoa: #eef1e9;
+  --cor-nevoa-funda: #e0e5d9;
+  --cor-mata: #18261c;
+  --cor-mata-clara: #4b5b4d;
+  --cor-musgo: #3b5638;
+  --cor-cobre: #a9612f;
+  --cor-cobre-fundo: #8a4a22;
+  --cor-cobre-claro: #d9a274; /* cobre sobre o Mata (painel): 7,0:1 */
+
+  /* Transparências (só aqui) */
+  --cor-mata-08: rgb(24 38 28 / 0.08);
+  --cor-mata-14: rgb(24 38 28 / 0.14);
+  --cor-mata-veu: rgb(24 38 28 / 0.62);
+  --cor-musgo-20: rgb(59 86 56 / 0.2);
+  --cor-musgo-35: rgb(59 86 56 / 0.35);
+  --cor-nevoa-16: rgb(238 241 233 / 0.16);
+  --cor-nevoa-70: rgb(238 241 233 / 0.7);
+  --cor-cobre-45: rgb(169 97 47 / 0.45);
+
+  /* Seta dos selects (cor Mata) */
+  --seta-select: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2318261c' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+
+  /* Régua da torra: do grão cru ao escuro */
+  --regua-gradiente: linear-gradient(90deg, var(--cor-mata-clara) 0%, var(--cor-cobre) 45%, var(--cor-cobre-fundo) 70%, var(--cor-mata) 100%);
+
+  /* Tipografia */
+  --fonte-titulo: 'Alegreya', Georgia, serif;
+  --fonte-texto: 'Schibsted Grotesk', system-ui, sans-serif;
+  --tam-rotulo: 0.875rem;                          /* 14 px */
+  --tam-texto: clamp(1rem, 0.96rem + 0.18vw, 1.0625rem); /* 16 → 17 px */
+  --tam-texto-maior: clamp(1rem, 0.94rem + 0.3vw, 1.125rem); /* 16 → 18 px */
+  --tam-h3: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);   /* 20 → 24 px */
+  --tam-h2: clamp(1.75rem, 1.6rem + 0.6vw, 2.25rem);    /* 28 → 36 px */
+  --tam-h2-calmo: clamp(1.5rem, 1.4rem + 0.5vw, 1.875rem); /* 24 → 30 px */
+  --tam-hero: clamp(2.125rem, 1.6rem + 2.2vw, 3.25rem); /* 34 → 52 px */
+  --tam-titulo-pagina: clamp(1.875rem, 1.6rem + 1.2vw, 2.75rem); /* 30 → 44 px */
+  --tam-numero: clamp(2rem, 1.7rem + 1.3vw, 2.75rem);   /* 32 → 44 px */
+  --tam-manuscrito: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem); /* 24 → 30 px */
+  --altura-linha: 1.55;
+
+  /* Espaçamento (base 4/8) */
+  --esp-1: 0.25rem;
+  --esp-2: 0.5rem;
+  --esp-3: 0.75rem;
+  --esp-4: 1rem;
+  --esp-5: 1.5rem;
+  --esp-6: 2rem;
+  --esp-7: 3rem;
+  --esp-8: 4rem;
+  --esp-9: 6rem;
+  --esp-secao: clamp(4rem, 3rem + 4vw, 7rem);
+
+  /* Forma */
+  --raio-1: 4px;
+  --raio-2: 8px;
+  --raio-3: 14px;
+  --raio-folha: 28px;
+  --linha: 1px solid var(--cor-mata-14);
+  --sombra-folha: 0 -18px 40px rgb(24 38 28 / 0.14);
+  --sombra-gaveta: -24px 0 48px rgb(24 38 28 / 0.18);
+  --sombra-flutuante: 0 10px 28px rgb(24 38 28 / 0.22);
+
+  /* Movimento */
+  --curva: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --curva-saida: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-micro: 200ms;
+  --dur-entrada: 560ms;
+
+  /* Layout */
+  --largura-max: 76rem;
+  --margem: clamp(1.25rem, 0.6rem + 3vw, 3rem);
+  --altura-topo: 4rem;
+  --altura-faixa: 0rem;
+  --toque: 2.75rem; /* 44 px */
+  --wa-flutuante: 3.5rem;
+
+  color-scheme: light;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --altura-topo: 4.5rem;
+    --altura-faixa: 2.5rem;
+  }
+}
+
+/* ===== Reset ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+  scroll-padding-top: calc(var(--altura-topo) + var(--altura-faixa) + var(--esp-4));
+}
+body {
+  background: var(--cor-nevoa);
+  color: var(--cor-mata);
+  font-family: var(--fonte-texto);
+  font-size: var(--tam-texto);
+  line-height: var(--altura-linha);
+  font-variant-numeric: lining-nums;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+a {
+  color: var(--cor-musgo);
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+a:hover {
+  text-decoration-thickness: 2px;
+}
+h1,
+h2,
+h3 {
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+::selection {
+  background: var(--cor-musgo);
+  color: var(--cor-nevoa);
+}
+html {
+  scrollbar-color: var(--cor-musgo-35) var(--cor-nevoa);
+}
+
+/* Foco desenhado (Musgo nos claros, Névoa nos escuros) */
+:focus-visible {
+  outline: 2px solid var(--cor-musgo);
+  outline-offset: 3px;
+  border-radius: var(--raio-1);
+}
+.fundo-escuro :focus-visible {
+  outline-color: var(--cor-nevoa);
+}
+
+/* ===== Utilidades compartilhadas ===== */
+.conteiner {
+  width: min(100% - 2 * var(--margem), var(--largura-max));
+  margin-inline: auto;
+}
+.so-leitor {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.rotulo {
+  font-family: var(--fonte-texto);
+  font-size: var(--tam-rotulo);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cor-mata-clara);
+}
+.numero {
+  font-family: var(--fonte-texto);
+  font-variant-numeric: lining-nums;
+}
+.manuscrito {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--tam-manuscrito);
+  line-height: 1.1;
+  color: var(--cor-cobre-fundo);
+}
+.selo-exemplo {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-1);
+  padding: 0.125rem var(--esp-2);
+  border: 1px dashed var(--cor-cobre-fundo);
+  border-radius: var(--raio-1);
+  font-size: var(--tam-texto);
+  font-weight: 600;
+  color: var(--cor-cobre-fundo);
+  letter-spacing: 0.02em;
+}
+
+/* Etiquetas [REVISAR COM O CLIENTE]: só aparecem com PUBLIC_MODO_REVISAO=true */
+[data-revisar]::after {
+  content: none;
+}
+.modo-revisao [data-revisar]::after {
+  content: ' [REVISAR COM O CLIENTE]';
+  font-size: var(--tam-rotulo);
+  font-weight: 600;
+  color: var(--cor-cobre-fundo);
+}
+
+/* ===== Botões ===== */
+.botao {
+  --botao-fundo: var(--cor-musgo);
+  --botao-texto: var(--cor-nevoa);
+  --botao-borda: var(--cor-musgo);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--esp-2);
+  min-height: var(--toque);
+  padding: 0.75rem 1.375rem;
+  border: 1.5px solid var(--botao-borda);
+  border-radius: var(--raio-2);
+  background: var(--botao-fundo);
+  color: var(--botao-texto);
+  font-family: var(--fonte-texto);
+  font-size: var(--tam-texto);
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform var(--dur-micro) var(--curva),
+    background-color var(--dur-micro) var(--curva),
+    color var(--dur-micro) var(--curva);
+}
+.botao:active {
+  transform: translateY(1px);
+}
+.botao[disabled],
+.botao[aria-disabled='true'] {
+  cursor: not-allowed;
+  --botao-fundo: var(--cor-nevoa-funda);
+  --botao-texto: var(--cor-mata-clara);
+  --botao-borda: var(--cor-mata-clara);
+}
+.botao--grande {
+  min-height: 3.5rem;
+  padding: 1rem 1.75rem;
+  font-size: var(--tam-texto-maior);
+}
+.botao--contorno {
+  --botao-fundo: transparent;
+  --botao-texto: var(--cor-musgo);
+}
+.botao--claro {
+  --botao-fundo: var(--cor-nevoa);
+  --botao-texto: var(--cor-mata);
+  --botao-borda: var(--cor-nevoa);
+}
+.botao--contorno-claro {
+  --botao-fundo: transparent;
+  --botao-texto: var(--cor-nevoa);
+  --botao-borda: var(--cor-nevoa);
+}
+@media (hover: hover) {
+  .botao:not([disabled]):hover {
+    --botao-fundo: var(--cor-mata);
+    --botao-borda: var(--cor-mata);
+  }
+  .botao--contorno:not([disabled]):hover {
+    --botao-fundo: var(--cor-musgo);
+    --botao-texto: var(--cor-nevoa);
+    --botao-borda: var(--cor-musgo);
+  }
+  .botao--claro:not([disabled]):hover,
+  .botao--contorno-claro:not([disabled]):hover {
+    --botao-fundo: var(--cor-nevoa-funda);
+    --botao-texto: var(--cor-mata);
+    --botao-borda: var(--cor-nevoa-funda);
+  }
+}
+.botao svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: none;
+}
+
+/* Link de texto com seta */
+.link-seta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  min-height: var(--toque);
+  font-weight: 600;
+  color: var(--cor-musgo);
+}
+
+/* Campos */
+.campo {
+  display: grid;
+  gap: var(--esp-1);
+}
+.campo__rotulo {
+  font-weight: 600;
+  font-size: var(--tam-texto);
+}
+.campo__ajuda {
+  color: var(--cor-mata-clara);
+  font-size: var(--tam-texto);
+}
+.campo__entrada {
+  min-height: var(--toque);
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1.5px solid var(--cor-mata-clara);
+  border-radius: var(--raio-2);
+  background: var(--cor-nevoa);
+  font-size: 1rem;
+}
+.campo__entrada:focus-visible {
+  outline-offset: 1px;
+}
+textarea.campo__entrada {
+  min-height: 5.5rem;
+  resize: vertical;
+}
+
+/* Opções (radios estilizados) */
+.opcoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-2);
+  border: 0;
+  padding: 0;
+}
+.opcoes legend {
+  font-weight: 600;
+  margin-bottom: var(--esp-2);
+  padding: 0;
+}
+.opcao {
+  position: relative;
+}
+.opcao input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+.opcao span {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-2);
+  min-height: var(--toque);
+  padding: 0.5rem 1rem;
+  border: 1.5px solid var(--cor-mata-clara);
+  border-radius: var(--raio-2);
+  background: var(--cor-nevoa);
+  transition: background-color var(--dur-micro) var(--curva), color var(--dur-micro) var(--curva);
+}
+.opcao input:checked + span {
+  background: var(--cor-musgo);
+  border-color: var(--cor-musgo);
+  color: var(--cor-nevoa);
+}
+.opcao input:focus-visible + span {
+  outline: 2px solid var(--cor-musgo);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important; /* justificado: pedido do sistema da pessoa */
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+.link-seta svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform var(--dur-micro) var(--curva);
+}
+@media (hover: hover) {
+  .link-seta:hover svg {
+    transform: translateX(3px);
+  }
+}
+
+/* Transição entre páginas (navegadores sem suporte navegam normalmente) */
+@view-transition {
+  navigation: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}
+
+/* Pular para o conteúdo */
+.pular-conteudo {
+  position: fixed;
+  top: var(--esp-2);
+  left: var(--esp-2);
+  z-index: 90;
+  padding: var(--esp-3) var(--esp-4);
+  background: var(--cor-mata);
+  color: var(--cor-nevoa);
+  border-radius: var(--raio-2);
+  font-weight: 600;
+  transform: translateY(-200%);
+}
+.pular-conteudo:focus-visible {
+  transform: none;
+  outline-color: var(--cor-nevoa);
+}
+
+/* Campo numérico sem as setas nativas do navegador */
+input[type='number'] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

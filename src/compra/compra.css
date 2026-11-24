@@ -1,0 +1,61 @@
+.compra {
+  width: 100%;
+  display: grid;
+  gap: var(--esp-5);
+}
+.compra .opcao strong {
+  font-weight: 600;
+}
+.compra__nao-sei {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--toque);
+  margin-top: var(--esp-2);
+  width: 100%;
+}
+.compra__qtd {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-4);
+}
+.compra__qtd-rotulo {
+  font-weight: 600;
+}
+.compra__stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid var(--cor-mata-clara);
+  border-radius: var(--raio-2);
+}
+.compra__stepper button {
+  display: grid;
+  place-items: center;
+  width: var(--toque);
+  height: var(--toque);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.compra .icone {
+  display: inline-grid;
+}
+.compra .icone svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.compra__stepper output {
+  min-width: 2rem;
+  text-align: center;
+  font-weight: 600;
+}
+.compra__botao {
+  width: 100%;
+}
+.compra__esgotado {
+  font-weight: 600;
+  color: var(--cor-cobre-fundo);
+}
+.compra .opcao input:disabled + span {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

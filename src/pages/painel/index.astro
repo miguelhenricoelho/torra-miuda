@@ -1,0 +1,10 @@
+---
+import LayoutPainel from '../../layout-painel/layout-painel.astro';
+import Painel from '../../painel/painel.jsx';
+---
+
+<LayoutPainel titulo="Painel da equipe">
+  <Painel client:only="react">
+    <p class="painel-carregando" slot="fallback">Abrindo o painel…</p>
+  </Painel>
+</LayoutPainel>

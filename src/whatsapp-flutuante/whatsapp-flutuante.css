@@ -1,0 +1,35 @@
+.wa-flutuante {
+  position: fixed;
+  right: max(var(--esp-4), env(safe-area-inset-right));
+  bottom: max(var(--esp-4), env(safe-area-inset-bottom));
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  height: var(--wa-flutuante);
+  padding: 0 1.125rem 0 1rem;
+  border-radius: 999px;
+  background: var(--cor-musgo);
+  color: var(--cor-nevoa);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: var(--sombra-flutuante);
+  transform: translateY(calc(100% + var(--esp-6)));
+  opacity: 0;
+  transition:
+    transform var(--dur-entrada) var(--curva),
+    opacity var(--dur-micro) var(--curva);
+}
+.wa-flutuante svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.wa-flutuante[data-visivel='true'] {
+  transform: none;
+  opacity: 1;
+}
+@media (min-width: 1024px) {
+  .wa-flutuante {
+    display: none;
+  }
+}

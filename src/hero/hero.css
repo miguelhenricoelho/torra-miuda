@@ -1,0 +1,43 @@
+.hero__dentro {
+  display: grid;
+  gap: var(--esp-6);
+  padding-block: var(--esp-6) var(--esp-8);
+}
+.hero__texto {
+  display: grid;
+  gap: var(--esp-5);
+  align-content: center;
+}
+.hero__origem {
+  font-weight: 600;
+  color: var(--cor-mata-clara);
+}
+.hero h1 {
+  font-size: var(--tam-hero);
+  max-width: 15ch;
+}
+.hero__apoio {
+  max-width: 40ch;
+  font-size: var(--tam-texto-maior);
+}
+.hero__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-3) var(--esp-5);
+}
+.hero__moldura {
+  aspect-ratio: 4 / 3;
+}
+@media (min-width: 1024px) {
+  .hero__dentro {
+    grid-template-columns: 6fr 5fr;
+    gap: var(--esp-8);
+    align-items: center;
+    padding-block: var(--esp-7);
+  }
+  .hero__moldura {
+    aspect-ratio: 4 / 5;
+    max-height: 62svh;
+  }
+}

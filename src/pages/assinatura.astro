@@ -1,0 +1,34 @@
+---
+import Layout from '../layout/layout.astro';
+import Cabecalho from '../cabecalho/cabecalho.astro';
+import AssinaturaSecao from '../assinatura-secao/assinatura-secao.astro';
+import Faq from '../faq/faq.astro';
+import CtaFinal from '../cta-final/cta-final.astro';
+import { PASSOS } from '../assinatura-secao/passos.js';
+import Revisar from '../revisar/revisar.astro';
+import '../como-funciona/como-funciona.css';
+---
+
+<Layout titulo="Assinatura de café" descricao="Todo mês, um café diferente da Serra de Baturité: 250 g por R$ 59, pago na entrega. Em Fortaleza ou pelos Correios." classe="pagina-interna">
+  <Cabecalho rotulo="Assinatura" titulo="Um café diferente da serra a cada mês, pago na entrega" apoio="R$ 59 por mês, um pacote de 250 g, em grão ou moído do seu jeito." />
+  <section class="como-funciona" aria-labelledby="assinatura-como">
+    <div class="conteiner como-funciona__grade">
+      <div class="como-funciona__cabeca">
+        <h2 id="assinatura-como">Como a assinatura funciona</h2>
+      </div>
+      <ol class="como-funciona__passos">
+        {
+          PASSOS.map((passo, indice) => (
+            <li>
+              <span class="como-funciona__numero numero" aria-hidden="true">{indice + 1}</span>
+              <div><h3>{passo.titulo}</h3>{passo.revisar ? <Revisar as="p">{passo.texto}</Revisar> : <p>{passo.texto}</p>}</div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+  <AssinaturaSecao />
+  <Faq titulo="Dúvidas sobre o café" />
+  <CtaFinal titulo="Prefere escolher um café agora? Ele entra na torra de" />
+</Layout>

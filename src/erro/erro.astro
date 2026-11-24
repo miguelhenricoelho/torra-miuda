@@ -1,0 +1,17 @@
+---
+import { svgCurvas } from '../curvas/curvas.js';
+import './erro.css';
+---
+
+<section class="erro" aria-labelledby="erro-titulo">
+  <div class="erro__curvas" set:html={svgCurvas({ largura: 1200, altura: 700, semente: 3, morros: 2, aneis: 9, classe: 'erro__curvas-svg' })} />
+  <div class="conteiner erro__dentro">
+    <p class="rotulo">Página não encontrada</p>
+    <h1 id="erro-titulo">Esta página não está no mapa da serra.</h1>
+    <p>O endereço pode ter mudado, ou o lote saiu do catálogo depois da colheita.</p>
+    <div class="erro__acoes">
+      <a class="botao botao--grande" href="/cafes">Ver os cafés desta colheita</a>
+      <a class="link-seta" href="/">Voltar para o início</a>
+    </div>
+  </div>
+</section>

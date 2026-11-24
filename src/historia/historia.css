@@ -1,0 +1,133 @@
+.historia__linha,
+.historia__nome,
+.historia__equipe,
+.historia__numeros {
+  padding-block: var(--esp-secao);
+}
+.historia__nome,
+.historia__numeros {
+  background: var(--cor-nevoa-funda);
+}
+.historia__nome h2,
+.historia__equipe h2,
+.historia__numeros h2 {
+  font-size: var(--tam-h2-calmo);
+  margin-bottom: var(--esp-5);
+}
+
+/* Linha do tempo: o texto já aparece pronto; só a régua lateral acompanha */
+.linha {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--esp-7);
+  border-left: 2px solid var(--cor-cobre);
+  padding-left: var(--esp-5);
+}
+.linha__marco {
+  position: relative;
+  display: grid;
+  gap: var(--esp-3);
+}
+.linha__marco::before {
+  content: '';
+  position: absolute;
+  left: calc(-1 * var(--esp-5) - 7px);
+  top: 0.55rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--cor-cobre-fundo);
+  box-shadow: 0 0 0 4px var(--cor-nevoa);
+}
+.linha__ano {
+  font-size: var(--tam-numero);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--cor-cobre-fundo);
+}
+.linha__texto h3 {
+  font-size: var(--tam-h3);
+  margin-bottom: var(--esp-2);
+}
+.linha__texto p {
+  max-width: 48ch;
+}
+.linha__foto {
+  max-width: 30rem;
+}
+
+.historia__nome-grade {
+  display: grid;
+  gap: var(--esp-6);
+  align-items: center;
+}
+.historia__nome-grade .moldura {
+  max-width: 24rem;
+}
+.historia__nome-texto {
+  font-family: var(--fonte-titulo);
+  font-size: var(--tam-h3);
+  font-weight: 500;
+  line-height: 1.35;
+  max-width: 32ch;
+}
+
+.historia__causa {
+  padding-block: var(--esp-secao);
+  background: var(--cor-mata);
+  color: var(--cor-nevoa);
+}
+.historia__causa .rotulo {
+  color: var(--cor-nevoa-70);
+}
+.historia__causa-frase {
+  margin-block: var(--esp-4) var(--esp-3);
+  max-width: 24ch;
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--tam-h2);
+  line-height: 1.2;
+}
+.historia__causa-autora {
+  color: var(--cor-nevoa-70);
+}
+
+.equipe {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--esp-6) var(--esp-4);
+}
+.equipe .moldura__legenda {
+  display: none;
+}
+.equipe h3 {
+  font-size: var(--tam-h3);
+  margin-top: var(--esp-3);
+}
+.equipe p {
+  color: var(--cor-mata-clara);
+}
+
+@media (min-width: 900px) {
+  .linha__marco--foto {
+    grid-template-columns: 9rem minmax(0, 1fr) minmax(0, 24rem);
+    align-items: start;
+    gap: var(--esp-6);
+  }
+  .linha__marco:not(.linha__marco--foto) {
+    grid-template-columns: 9rem minmax(0, 1fr);
+    gap: var(--esp-6);
+  }
+  .historia__nome-grade {
+    grid-template-columns: 4fr 7fr;
+    gap: var(--esp-8);
+  }
+  .equipe {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--esp-6);
+  }
+}

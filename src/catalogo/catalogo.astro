@@ -1,0 +1,32 @@
+---
+// Lista dos cafés da colheita. titulo=false quando a página já tem o seu próprio cabeçalho.
+import Ficha from '../ficha/ficha.astro';
+import { listarLotes, CATALOGO_DE_EXEMPLO } from '../services/catalogo.js';
+import TorraData from '../proxima-torra/torra-data.astro';
+import './catalogo.css';
+
+const { titulo = 'Os cafés desta colheita', excluir = null, mostrarCabeca = true, tituloFicha = 'h3', comFiltros = false } = Astro.props;
+const lotes = listarLotes().filter((lote) => lote.id !== excluir);
+---
+
+<div class="catalogo-bloco">
+  {
+    mostrarCabeca && (
+      <div class="cafes__cabeca">
+        <div class="cafes__linha">
+          <h2 id="cafes-titulo">{titulo}</h2>
+          {CATALOGO_DE_EXEMPLO && <span class="selo-exemplo">Exemplo: lotes ainda não enviados</span>}
+        </div>
+        <p class="cafes__intro">
+          Cada café vem de um sítio da serra e tem o seu ponto de torra. Escolha pelo jeito que você gosta. A ficha técnica fica na página de cada um, para quem quiser.
+        </p>
+        <p class="cafes__torra">Pedindo agora, entra na torra de <TorraData /></p>
+      </div>
+    )
+  }
+  {comFiltros && <slot name="filtros" />}
+  <div class="catalogo" data-catalogo>
+    {lotes.map((lote) => <Ficha lote={lote} titulo={tituloFicha} />)}
+  </div>
+  <p class="catalogo__vazio" data-catalogo-vazio hidden>Nenhum café desta colheita tem esse jeito. Tire um dos filtros, ou pergunte à Iara pelo WhatsApp.</p>
+</div>

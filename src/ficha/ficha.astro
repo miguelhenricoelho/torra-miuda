@@ -1,0 +1,40 @@
+---
+import Regua from '../regua/regua.astro';
+import { NOME_PERFIL, nomeHtml } from '../dados/dados.js';
+import { sitioDoLote } from '../services/catalogo.js';
+import { linkWhatsapp, MENSAGENS } from '../whatsapp/whatsapp.js';
+import './ficha.css';
+
+const { lote, titulo = 'h3' } = Astro.props;
+const Titulo = titulo;
+const esgotado = lote.estado === 'esgotado';
+const sitio = sitioDoLote(lote);
+const real = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+const perfil = `${NOME_PERFIL[lote.perfil]}${lote.leite ? ' · bom com leite' : ' · melhor puro'}${lote.espresso ? ' · vai no espresso' : ''}`;
+---
+
+<article class:list={['ficha', { 'ficha--esgotada': esgotado }]} data-perfil={lote.perfil} data-leite={String(lote.leite)} data-espresso={String(lote.espresso)}>
+  <p class="ficha__numero numero" aria-hidden="true">{lote.numero}</p>
+  <div class="ficha__texto">
+    <Titulo class="ficha__nome"><a href={`/cafes/${lote.slug}`} set:html={nomeHtml(lote.nome)} /></Titulo>
+    <p class="ficha__sitio">{sitio?.nome} · {sitio?.produtor ?? 'produtor a confirmar'}</p>
+    <p class="ficha__simples">{lote.simples}</p>
+    <p class="ficha__perfil">{perfil}</p>
+  </div>
+  <div class="ficha__lado">
+    <Regua ponto={lote.ponto} pontoNome={lote.pontoNome} compacta />
+    <p class="ficha__precos numero"><span>250 g <strong>{real.format(lote.precos[250])}</strong></span><span>1 kg <strong>{real.format(lote.precos[1000])}</strong></span></p>
+    {
+      esgotado ? (
+        <>
+          <p class="ficha__esgotado">Esgotado nesta colheita</p>
+          <a class="botao botao--contorno" href={linkWhatsapp(MENSAGENS.avisarVolta(lote.nome))} target="_blank" rel="noopener" data-wa>
+            Avisar quando voltar
+          </a>
+        </>
+      ) : (
+        <a class="botao" href={`/cafes/${lote.slug}`}>Escolher peso e moagem</a>
+      )
+    }
+  </div>
+</article>

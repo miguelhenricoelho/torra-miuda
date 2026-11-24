@@ -1,0 +1,25 @@
+---
+import { TITULO, NUMEROS, FALAS } from './conteudo.js';
+import { CONFIG } from '../dados/dados.js';
+import './provas.css';
+---
+
+<section class="provas" aria-labelledby="provas-titulo">
+  <div class="conteiner">
+    <h2 id="provas-titulo" class="provas__titulo">{TITULO}</h2>
+    <dl class="provas__numeros">
+      {NUMEROS.map((numero) => <div><dt>{numero.rotulo}</dt><dd class="numero">{numero.valor}</dd></div>)}
+    </dl>
+    <div class="provas__falas">
+      {
+        FALAS.map((fala) => (
+          <blockquote>
+            <p>“{fala.texto}”</p>
+            <footer>{fala.origem}</footer>
+          </blockquote>
+        ))
+      }
+    </div>
+    {CONFIG.google.perfil && <a class="link-seta" href={CONFIG.google.perfil} target="_blank" rel="noopener">Ver as avaliações no Google</a>}
+  </div>
+</section>

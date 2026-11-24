@@ -1,0 +1,31 @@
+---
+import Layout from '../../layout/layout.astro';
+import Cabecalho from '../../cabecalho/cabecalho.astro';
+import ProximaTorra from '../../proxima-torra/proxima-torra.astro';
+import Catalogo from '../../catalogo/catalogo.astro';
+import FiltrosCafes from '../../filtros-cafes/filtros-cafes.astro';
+import TabelaMoagem from '../../tabela-moagem/tabela-moagem.astro';
+import CtaFinal from '../../cta-final/cta-final.astro';
+import { CATALOGO_DE_EXEMPLO } from '../../services/catalogo.js';
+import '../../catalogo/catalogo.css';
+---
+
+<Layout titulo="Cafés desta colheita" descricao="Os cafés especiais da Serra de Baturité desta colheita, em 250 g ou 1 kg, em grão ou moído para coado, prensa, moka ou espresso. Torrados depois do seu pedido." classe="pagina-interna">
+  <Cabecalho rotulo="Cafés" titulo="Os cafés desta colheita" apoio="Cada café vem de um sítio da serra e tem o seu ponto de torra. Os lotes mudam umas quatro vezes por ano. Escolha pelo jeito que você gosta.">
+    <ProximaTorra mostrarEntrega />
+  </Cabecalho>
+  <section class="cafes" aria-label="Lista de cafés">
+    <div class="conteiner">
+      {CATALOGO_DE_EXEMPLO && <p class="cafes__exemplo"><span class="selo-exemplo">Exemplo: lotes ainda não enviados</span></p>}
+      <Catalogo mostrarCabeca={false} tituloFicha="h2" comFiltros>
+        <FiltrosCafes slot="filtros" />
+      </Catalogo>
+      <div class="cafes__ajuda">
+        <p>Não sabe qual escolher?</p>
+        <a class="botao botao--contorno" href="/qual-e-o-seu-cafe">Descobrir qual é o meu</a>
+      </div>
+      <TabelaMoagem />
+    </div>
+  </section>
+  <CtaFinal />
+</Layout>

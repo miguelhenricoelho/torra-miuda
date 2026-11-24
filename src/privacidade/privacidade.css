@@ -1,0 +1,17 @@
+.privacidade {
+  display: grid;
+  gap: var(--esp-6);
+  padding-block: var(--esp-7) var(--esp-secao);
+  max-width: 48rem;
+  margin-inline: auto;
+}
+.privacidade section {
+  display: grid;
+  gap: var(--esp-3);
+}
+.privacidade h2 {
+  font-size: var(--tam-h3);
+}
+.privacidade__data {
+  color: var(--cor-mata-clara);
+}

@@ -1,0 +1,70 @@
+.visitar {
+  padding-block: var(--esp-secao) 0;
+}
+.visitar__lugares {
+  display: grid;
+  gap: var(--esp-6);
+  padding: clamp(1.25rem, 0.8rem + 2vw, 2.5rem);
+  border-radius: var(--raio-3);
+  background: var(--cor-mata);
+  color: var(--cor-nevoa);
+}
+.visitar__lugares a {
+  color: var(--cor-nevoa);
+}
+.visitar .lugar__nome {
+  font-family: var(--fonte-titulo);
+  font-size: var(--tam-h3);
+}
+.visita {
+  padding-block: var(--esp-secao);
+}
+.visita__grade {
+  display: grid;
+  gap: var(--esp-6);
+  align-items: start;
+}
+.visita__texto {
+  display: grid;
+  gap: var(--esp-4);
+}
+.visita h2 {
+  font-size: var(--tam-h2-calmo);
+  max-width: 24ch;
+}
+.visita__texto p:last-child {
+  max-width: 44ch;
+  font-size: var(--tam-texto-maior);
+}
+.visita__estado {
+  display: grid;
+  gap: var(--esp-4);
+  justify-items: start;
+  padding: clamp(1.25rem, 0.8rem + 2vw, 2.25rem);
+  border-radius: var(--raio-3);
+  background: var(--cor-nevoa-funda);
+}
+.visita__form {
+  display: grid;
+  gap: var(--esp-4);
+  justify-items: start;
+}
+.visita__data {
+  font-weight: 600;
+  font-size: var(--tam-texto-maior);
+}
+.visita .botao svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+@media (min-width: 720px) {
+  .visitar__lugares {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1024px) {
+  .visita__grade {
+    grid-template-columns: 6fr 5fr;
+    gap: var(--esp-8);
+  }
+}

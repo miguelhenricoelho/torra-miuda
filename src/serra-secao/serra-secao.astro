@@ -1,0 +1,19 @@
+---
+import MapaSerra from '../mapa-serra/mapa-serra.astro';
+import { CATALOGO_DE_EXEMPLO } from '../services/catalogo.js';
+import { TEXTOS } from './conteudo.js';
+import './serra-secao.css';
+---
+
+<section class="serra" aria-labelledby="serra-titulo">
+  <div class="conteiner serra__grade">
+    <div class="serra__texto">
+      <p class="rotulo">A Serra de Baturité</p>
+      <h2 id="serra-titulo">{TEXTOS.titulo}</h2>
+      <p>{TEXTOS.texto}</p>
+      {CATALOGO_DE_EXEMPLO && <span class="selo-exemplo">Exemplo: posições e nomes dos sítios a confirmar</span>}
+      <a class="link-seta" href="/a-serra">Conhecer os sítios</a>
+    </div>
+    <MapaSerra />
+  </div>
+</section>

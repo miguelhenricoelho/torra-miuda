@@ -1,0 +1,7 @@
+.corpo-painel {
+  min-height: 100dvh;
+  background: var(--cor-nevoa);
+}
+.corpo-painel :where(button) {
+  cursor: pointer;
+}

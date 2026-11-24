@@ -1,0 +1,117 @@
+.mapa {
+  display: grid;
+  gap: var(--esp-5);
+}
+.mapa__desenho {
+  position: relative;
+  border-radius: var(--raio-3);
+  background: var(--cor-nevoa-funda);
+  overflow: hidden;
+}
+.mapa__desenho svg {
+  width: 100%;
+  height: auto;
+}
+.mapa__curvas {
+  color: var(--cor-musgo-35);
+}
+.mapa__curvas path {
+  transition: opacity var(--dur-entrada) var(--curva);
+  transition-delay: var(--atraso);
+}
+.mapa__desenho[data-revelar='espera'] .mapa__curvas path {
+  opacity: 0;
+}
+.mapa__ponto {
+  cursor: pointer;
+  outline: none;
+}
+.mapa__alvo {
+  fill: transparent;
+}
+.mapa__marca {
+  fill: var(--cor-cobre-fundo);
+  stroke: var(--cor-nevoa);
+  stroke-width: 3;
+  transition: transform var(--dur-micro) var(--curva);
+}
+.mapa__ponto text {
+  font-family: var(--fonte-texto);
+  font-size: 17px;
+  font-weight: 600;
+  display: none;
+  fill: var(--cor-mata);
+  paint-order: stroke;
+  stroke: var(--cor-nevoa-funda);
+  stroke-width: 5px;
+}
+.mapa__ponto[aria-pressed='true'] .mapa__marca,
+.mapa__ponto:focus-visible .mapa__marca {
+  fill: var(--cor-musgo);
+  transform: scale(1.3);
+}
+.mapa__ponto:focus-visible .mapa__alvo {
+  stroke: var(--cor-musgo);
+  stroke-width: 2;
+}
+.mapa__cartao {
+  position: absolute;
+  left: clamp(0.75rem, calc(var(--x) - 7rem), calc(100% - 15rem));
+  top: calc(var(--y) + 1.75rem);
+  width: 14rem;
+  padding: var(--esp-3) var(--esp-4);
+  border-radius: var(--raio-2);
+  background: var(--cor-mata);
+  color: var(--cor-nevoa);
+  display: grid;
+  gap: var(--esp-1);
+}
+.mapa__cartao-nome {
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+.mapa__lista {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: var(--linha);
+}
+.mapa__lista button {
+  width: 100%;
+  min-height: var(--toque);
+  display: grid;
+  gap: 0;
+  padding: var(--esp-3) 0;
+  border: 0;
+  border-bottom: var(--linha);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+.mapa__lista button[aria-pressed='true'] .mapa__lista-nome {
+  color: var(--cor-musgo);
+  text-decoration: underline;
+}
+.mapa__lista-nome {
+  font-weight: 600;
+}
+.mapa__lista-detalhe {
+  color: var(--cor-mata-clara);
+}
+@media (min-width: 900px) {
+  .mapa__ponto text {
+    display: inline;
+  }
+}
+@media (min-width: 640px) {
+  .mapa__lista {
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--esp-5);
+  }
+}
+
+.mapa__cartao[hidden] {
+  display: none;
+}

@@ -1,0 +1,36 @@
+/* Provisório: o nome na fonte de títulos com o grão no pingo do "i", até chegar o logo em vetor */
+.logo {
+  color: var(--cor-mata);
+  text-decoration: none;
+  flex: none;
+}
+.logo__nome {
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  font-size: 1.625rem;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.logo__i {
+  position: relative;
+  display: inline-block;
+}
+.logo__grao {
+  position: absolute;
+  left: 50%;
+  top: 0.02em;
+  width: 0.28em;
+  height: 0.28em;
+  translate: -50% 0;
+  color: var(--cor-cobre-fundo);
+}
+.logo--escuro {
+  color: var(--cor-nevoa);
+}
+.logo--escuro .logo__grao {
+  color: var(--cor-cobre);
+}
+[data-intro='rodando'] .topo .logo__grao {
+  opacity: 0;
+}

@@ -1,0 +1,26 @@
+.serra {
+  padding-block: var(--esp-secao);
+  background: var(--cor-nevoa);
+}
+.serra__grade {
+  display: grid;
+  gap: var(--esp-6);
+}
+.serra__texto {
+  display: grid;
+  gap: var(--esp-4);
+  align-content: start;
+}
+.serra__texto h2 {
+  font-size: var(--tam-h2);
+}
+.serra__texto p {
+  max-width: 44ch;
+  font-size: var(--tam-texto-maior);
+}
+@media (min-width: 1024px) {
+  .serra__grade {
+    grid-template-columns: 4fr 8fr;
+    gap: var(--esp-8);
+  }
+}

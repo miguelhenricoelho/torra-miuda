@@ -1,0 +1,24 @@
+{
+  "name": "torra-miuda-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node src/services/baixar-catalogo.js && astro build && node src/revisar/contar.js",
+    "preview": "astro preview",
+    "test": "node --test src/ferramenta/ferramenta.test.js src/sacola/sacola.test.js src/proxima-torra/proxima-torra.test.js src/services/painel-regras.test.js supabase/functions/_shared/validar-pedido.test.js",
+    "test:banco": "bash supabase/testes/rodar-testes.sh"
+  },
+  "dependencies": {
+    "@astrojs/react": "^7.1.9",
+    "@astrojs/sitemap": "^3.7.5",
+    "@nanostores/react": "^0.8.4",
+    "@supabase/supabase-js": "2.119.0",
+    "astro": "^7.4.12",
+    "nanostores": "^0.11.4",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "zod": "4.6.7"
+  }
+}

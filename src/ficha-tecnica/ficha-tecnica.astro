@@ -1,0 +1,27 @@
+---
+import Regua from '../regua/regua.astro';
+import './ficha-tecnica.css';
+
+const { lote, sitio } = Astro.props;
+const dados = [
+  ['Sítio', sitio?.nome ?? 'a confirmar'],
+  ['Produtor', sitio?.produtor ?? 'a confirmar'],
+  ['Altitude', sitio?.altitude ? `${sitio.altitude} m` : 'a confirmar'],
+  ['Variedade', lote.variedade ?? 'a confirmar'],
+  ['Processo', lote.processo ?? 'a confirmar'],
+  ['Ponto da torra', lote.pontoNome],
+];
+---
+
+<section class="ficha-tecnica conteiner" aria-labelledby="ficha-titulo">
+  <div class="ficha-tecnica__cabeca">
+    <h2 id="ficha-titulo">Ficha da mestre de torra</h2>
+    <p>Para quem quer o detalhe técnico. A Iara preenche cada lote.</p>
+  </div>
+  <div class="ficha-tecnica__grade">
+    <dl class="ficha-tecnica__dados">
+      {dados.map(([rotulo, valor]) => <div><dt>{rotulo}</dt><dd>{valor}</dd></div>)}
+    </dl>
+    <Regua ponto={lote.ponto} pontoNome={lote.pontoNome} />
+  </div>
+</section>

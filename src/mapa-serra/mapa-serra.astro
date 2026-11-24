@@ -1,0 +1,63 @@
+---
+import { curvasDaSerra } from '../curvas/curvas.js';
+import { listarSitios, picosDoMapa, lotesDoSitio } from '../services/catalogo.js';
+import { nomeHtml } from '../dados/dados.js';
+import './mapa-serra.css';
+
+const sitios = listarSitios().map((sitio) => {
+  const lotes = lotesDoSitio(sitio.numero);
+  return { ...sitio, cafes: lotes.length ? lotes.map((lote) => lote.nome).join(', ') : 'sem lote nesta colheita' };
+});
+const caminhos = curvasDaSerra({ largura: 760, altura: 560, semente: 21, aneis: 8, picos: picosDoMapa() });
+---
+
+<div class="mapa" data-mapa>
+  <div class="mapa__desenho">
+    <svg viewBox="0 0 760 560" role="img" aria-labelledby="mapa-titulo">
+      <title id="mapa-titulo">Mapa ilustrado da Serra de Baturité com os 6 sítios parceiros</title>
+      <g class="mapa__curvas" fill="none" stroke="currentColor" stroke-width="1.3">
+        {caminhos.map((d, i) => <path d={d} style={`--atraso: ${i * 40}ms`} />)}
+      </g>
+      <g class="mapa__pontos">
+        {
+          sitios.map((sitio) => (
+            <g class="mapa__ponto" transform={`translate(${sitio.x} ${sitio.y})`} data-sitio={sitio.numero} tabindex="0" role="button" aria-label={sitio.nome} aria-pressed="false">
+              <circle r="22" class="mapa__alvo" />
+              <circle r="9" class="mapa__marca" />
+              <text y="-18" text-anchor="middle">{sitio.nome}</text>
+            </g>
+          ))
+        }
+      </g>
+    </svg>
+    {
+      sitios.map((sitio) => (
+        <div class="mapa__cartao" data-cartao={sitio.numero} style={`--x: ${(sitio.x / 760) * 100}%; --y: ${(sitio.y / 560) * 100}%`} hidden>
+          <p class="mapa__cartao-nome" set:html={nomeHtml(sitio.nome)} />
+          <p>Produtor: {sitio.produtor ?? 'a confirmar'}</p>
+          <p>Altitude: {sitio.altitude ? `${sitio.altitude} m` : 'a confirmar'}</p>
+          <p>Nesta colheita: {sitio.cafes}</p>
+        </div>
+      ))
+    }
+  </div>
+  <ol class="mapa__lista">
+    {
+      sitios.map((sitio) => (
+        <li>
+          <button type="button" data-sitio={sitio.numero} aria-pressed="false">
+            <span class="mapa__lista-nome">{sitio.nome}</span>
+            <span class="mapa__lista-detalhe">
+              {sitio.produtor ?? 'produtor a confirmar'} · {sitio.altitude ? `${sitio.altitude} m` : 'altitude a confirmar'} · {sitio.cafes}
+            </span>
+          </button>
+        </li>
+      ))
+    }
+  </ol>
+</div>
+
+<script>
+  import { iniciarMapa } from './mapa-serra.js';
+  iniciarMapa();
+</script>

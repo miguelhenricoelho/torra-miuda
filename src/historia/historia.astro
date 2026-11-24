@@ -1,0 +1,71 @@
+---
+import Moldura from '../moldura/moldura.astro';
+import { nomeHtml } from '../dados/dados.js';
+import { LINHA, NOME, CAUSA, EQUIPE, NUMEROS } from './conteudo.js';
+import { FOTOS, FOTOS_EQUIPE } from '../fotos/fotos.js';
+import './historia.css';
+---
+
+<section class="historia__linha" aria-labelledby="linha-titulo">
+  <div class="conteiner">
+    <h2 id="linha-titulo" class="so-leitor">Linha do tempo</h2>
+    <ol class="linha">
+      {
+        LINHA.map((marco, indice) => (
+          <li class:list={['linha__marco', { 'linha__marco--foto': marco.legendaFoto }]}>
+            <p class="linha__ano numero">{marco.ano}</p>
+            <div class="linha__texto">
+              <h3 set:html={nomeHtml(marco.titulo)} />
+              <p>{marco.texto}</p>
+            </div>
+            {marco.legendaFoto && <Moldura legenda={marco.legendaFoto} foto={marco.foto ? FOTOS[marco.foto] : null} tamanhos="(min-width: 900px) 24rem, 92vw" semente={40 + indice} proporcao="4 / 3" classe="linha__foto" />}
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<section class="historia__nome" aria-labelledby="nome-titulo">
+  <div class="conteiner historia__nome-grade">
+    <Moldura legenda={NOME.legendaFoto} foto={FOTOS.peDeCafe} tamanhos="(min-width: 900px) 24rem, 92vw" semente={51} proporcao="1 / 1" />
+    <div>
+      <h2 id="nome-titulo">{NOME.titulo}</h2>
+      <p class="historia__nome-texto">{NOME.texto}</p>
+    </div>
+  </div>
+</section>
+
+<section class="historia__causa fundo-escuro" aria-labelledby="causa-titulo">
+  <div class="conteiner">
+    <h2 id="causa-titulo" class="rotulo">O que defendemos</h2>
+    <p class="historia__causa-frase">“{CAUSA}”</p>
+    <p class="historia__causa-autora">Iara, mestre de torra</p>
+  </div>
+</section>
+
+<section class="historia__equipe" aria-labelledby="equipe-titulo">
+  <div class="conteiner">
+    <h2 id="equipe-titulo">Quem faz</h2>
+    <ul class="equipe">
+      {
+        EQUIPE.map((pessoa, indice) => (
+          <li>
+            <Moldura legenda={pessoa.legendaFoto} foto={FOTOS_EQUIPE[pessoa.nome] ?? null} tamanhos="(min-width: 900px) 30vw, 46vw" semente={60 + indice} proporcao="4 / 5" />
+            <h3>{pessoa.nome}</h3>
+            <p>{pessoa.funcao}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<section class="historia__numeros" aria-labelledby="numeros-titulo">
+  <div class="conteiner">
+    <h2 id="numeros-titulo">Até aqui</h2>
+    <dl class="provas__numeros">
+      {NUMEROS.map((numero) => <div><dt>{numero.rotulo}</dt><dd class="numero">{numero.valor}</dd></div>)}
+    </dl>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+---
+import Revisar from '../revisar/revisar.astro';
+import { LINHAS } from './conteudo.js';
+import './tabela-moagem.css';
+---
+
+<div class="tabela-moagem" id="tabela-moagem">
+  <h3>Qual moagem pedir</h3>
+  <table>
+    <thead>
+      <tr><th scope="col">Como você faz café</th><th scope="col">Peça</th></tr>
+    </thead>
+    <tbody>
+      {LINHAS.map((linha) => <tr><td>{linha.metodo}</td><td>{linha.revisar ? <Revisar>{linha.moagem}</Revisar> : linha.moagem}</td></tr>)}
+    </tbody>
+  </table>
+</div>

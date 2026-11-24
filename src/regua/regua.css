@@ -1,0 +1,60 @@
+.regua {
+  display: grid;
+  gap: var(--esp-2);
+  width: 100%;
+}
+.regua__barra {
+  position: relative;
+  height: 0.625rem;
+  border-radius: 999px;
+  background: var(--regua-gradiente);
+}
+.regua__marcador {
+  position: absolute;
+  top: 50%;
+  left: var(--ponto);
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: -0.625rem 0 0 -0.625rem;
+  border-radius: 50%;
+  background: var(--cor-nevoa);
+  border: 3px solid var(--cor-mata);
+  transition: transform 640ms var(--curva);
+}
+.regua[data-visivel='false'] .regua__marcador {
+  transform: translateX(-2.5rem);
+}
+.regua__rotulos {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--tam-rotulo);
+  font-weight: 600;
+  color: var(--cor-mata-clara);
+}
+.regua--compacta .regua__barra {
+  height: 0.5rem;
+}
+.regua--compacta .regua__marcador {
+  width: 1rem;
+  height: 1rem;
+  margin: -0.5rem 0 0 -0.5rem;
+  border-width: 2.5px;
+}
+.fundo-escuro .regua__barra {
+  box-shadow: 0 0 0 1px var(--cor-nevoa-16);
+}
+.fundo-escuro .regua__rotulos {
+  color: var(--cor-nevoa-70);
+}
+.regua--grande .regua__barra {
+  height: 1rem;
+}
+.regua--grande .regua__marcador {
+  width: 1.75rem;
+  height: 1.75rem;
+  margin: -0.875rem 0 0 -0.875rem;
+}
+.fundo-escuro .regua--grande .regua__marcador {
+  border-color: var(--cor-nevoa);
+  background: var(--cor-mata);
+}

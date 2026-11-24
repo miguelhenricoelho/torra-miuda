@@ -1,0 +1,66 @@
+---
+import Logo from '../logo/logo.astro';
+import Icone from '../icone/icone.astro';
+import Lugar from './lugar.astro';
+import { svgCurvas } from '../curvas/curvas.js';
+import { CONFIG } from '../dados/dados.js';
+import { linkWhatsapp, MENSAGENS } from '../whatsapp/whatsapp.js';
+import { LUGARES, LINKS_RODAPE } from './conteudo.js';
+import { CREDITO_FOTOS } from '../fotos/fotos.js';
+import './rodape.css';
+
+const ano = new Date().getFullYear();
+---
+
+<footer class="rodape fundo-escuro">
+  <div class="rodape__curvas" set:html={svgCurvas({ largura: 1600, altura: 260, semente: 5, morros: 3, aneis: 6, classe: 'rodape__curvas-svg' })} />
+  <div class="conteiner rodape__dentro">
+    <div class="rodape__marca">
+      <Logo escuro />
+      <p>Torrado depois do seu pedido, na Serra de Baturité.</p>
+      <nav class="rodape__nav" aria-label="Rodapé">
+        {LINKS_RODAPE.map((link) => <a href={link.href}>{link.rotulo}</a>)}
+      </nav>
+    </div>
+
+    <section class="rodape__visitar" aria-labelledby="rodape-visitar">
+      <h2 id="rodape-visitar" class="rodape__titulo">Visitar e retirar</h2>
+      <div class="rodape__lugares">
+        {LUGARES.map((lugar) => <Lugar lugar={lugar} />)}
+      </div>
+    </section>
+
+    <section class="rodape__contato" aria-labelledby="rodape-contato">
+      <h2 id="rodape-contato" class="rodape__titulo">Fale com a gente</h2>
+      <p class="rodape__status"><span data-atendimento>WhatsApp</span>. Pedidos de segunda a sábado, das 8h às 18h.</p>
+      <ul class="rodape__canais">
+        <li><a href={linkWhatsapp(MENSAGENS.duvidaGeral())} target="_blank" rel="noopener" data-wa><Icone nome="whatsapp" />{CONFIG.whatsappExibicao}</a></li>
+        <li><a href={`mailto:${CONFIG.email}`}><Icone nome="email" />{CONFIG.email}</a></li>
+        <li><a href={CONFIG.instagram} target="_blank" rel="noopener"><Icone nome="instagram" />{CONFIG.instagramUsuario} no Instagram</a></li>
+        <li><a href={CONFIG.tiktok} target="_blank" rel="noopener"><Icone nome="tiktok" />{CONFIG.tiktokUsuario} no TikTok</a></li>
+      </ul>
+    </section>
+  </div>
+  <div class="conteiner rodape__base">
+    <p>{CONFIG.razaoSocial} · CNPJ {CONFIG.cnpj} · © {ano}</p>
+    <ul class="rodape__links-base">
+      <li><a href="/privacidade-e-trocas">Privacidade e trocas</a></li>
+      <li><a href={CREDITO_FOTOS.href} target="_blank" rel="noopener">{CREDITO_FOTOS.texto}</a></li>
+      <li><a class="rodape__equipe" href="/painel/">Área da equipe</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('[data-ver-mapa]').forEach((botao) => {
+    botao.addEventListener('click', () => {
+      const caixa = botao.closest('[data-mapa-embed]');
+      const mapa = document.createElement('iframe');
+      mapa.title = caixa.dataset.mapaTitulo;
+      mapa.src = caixa.dataset.mapaEmbed;
+      mapa.loading = 'lazy';
+      mapa.referrerPolicy = 'no-referrer-when-downgrade';
+      caixa.replaceChildren(mapa);
+    });
+  });
+</script>

@@ -1,0 +1,29 @@
+---
+// Abertura das páginas internas: rótulo, título da página, texto de apoio e um espaço ao lado
+import { svgCurvas } from '../curvas/curvas.js';
+import { nomeHtml } from '../dados/dados.js';
+import './cabecalho.css';
+
+const { rotulo, titulo, apoio, trilha = null, semente = 4 } = Astro.props;
+const temLado = Astro.slots.has('default');
+---
+
+<header class:list={['cabecalho', { 'cabecalho--com-lado': temLado }]}>
+  <div class="cabecalho__curvas" set:html={svgCurvas({ largura: 1600, altura: 420, semente, morros: 2, aneis: 7, classe: 'cabecalho__curvas-svg' })} />
+  <div class="conteiner cabecalho__dentro">
+    <div class="cabecalho__texto">
+      {
+        trilha && (
+          <nav class="cabecalho__trilha" aria-label="Você está em">
+            {trilha.map((item) => <><a href={item.href}>{item.rotulo}</a><span aria-hidden="true">/</span></>)}
+          </nav>
+        )
+      }
+      {rotulo && <p class="rotulo">{rotulo}</p>}
+      <h1 set:html={nomeHtml(titulo)} />
+      {apoio && <p class="cabecalho__apoio">{apoio}</p>}
+      <slot name="abaixo" />
+    </div>
+    {temLado && <div class="cabecalho__lado"><slot /></div>}
+  </div>
+</header>

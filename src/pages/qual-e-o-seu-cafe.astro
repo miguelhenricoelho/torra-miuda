@@ -1,0 +1,19 @@
+---
+import Layout from '../layout/layout.astro';
+import QualCafe from '../qual-cafe/qual-cafe.astro';
+import TabelaMoagem from '../tabela-moagem/tabela-moagem.astro';
+import PerfisCafes from '../perfis-cafes/perfis-cafes.astro';
+import CtaFinal from '../cta-final/cta-final.astro';
+---
+
+<Layout titulo="Qual é o seu café?" descricao="Responda a até cinco perguntas sobre como você toma café e descubra o café da Serra de Baturité, o peso e a moagem certos para você." classe="pagina-interna">
+  <QualCafe nivel="h1" fundo={false} cedo />
+  <section class="plano-b" aria-labelledby="plano-b-titulo">
+    <div class="conteiner plano-b__grade">
+      <h2 id="plano-b-titulo">Prefere escolher sozinho?</h2>
+      <PerfisCafes />
+      <TabelaMoagem />
+    </div>
+  </section>
+  <CtaFinal secundario={null} />
+</Layout>

@@ -1,0 +1,41 @@
+---
+// Moldura de foto: mostra a foto quando existe; sem foto, as curvas da serra e a legenda do que entra ali.
+// "foto" vem de fotos/fotos.js ({ src, srcset, alt, posicao }). Com foto, a legenda de briefing some
+// e o texto vira o alt. "prioridade" é só para a foto do topo da página (carrega antes, sem lazy).
+import { svgCurvas } from '../curvas/curvas.js';
+import './moldura.css';
+
+const {
+  legenda,
+  semente = 7,
+  proporcao = '4 / 3',
+  foto = null,
+  tamanhos = '(min-width: 1024px) 40vw, 92vw',
+  prioridade = false,
+  classe = '',
+  transicao = null,
+} = Astro.props;
+---
+
+<figure
+  class:list={['moldura', classe, { 'moldura--sem-foto': !foto, 'moldura--foto': foto }]}
+  style={[proporcao && `aspect-ratio: ${proporcao};`, transicao && `view-transition-name: ${transicao};`].filter(Boolean).join(' ') || undefined}
+>
+  {
+    foto ? (
+      <img
+        src={foto.src}
+        srcset={foto.srcset}
+        sizes={tamanhos}
+        alt={foto.alt}
+        style={`object-position: ${foto.posicao};`}
+        loading={prioridade ? 'eager' : 'lazy'}
+        fetchpriority={prioridade ? 'high' : undefined}
+        decoding="async"
+      />
+    ) : (
+      <Fragment set:html={svgCurvas({ semente, morros: 1, aneis: 7 })} />
+    )
+  }
+  {!foto && legenda && <figcaption class="moldura__legenda">{legenda}</figcaption>}
+</figure>

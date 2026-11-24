@@ -1,0 +1,196 @@
+.ferramenta__grade {
+  display: grid;
+  gap: var(--esp-6);
+}
+.ferramenta__intro {
+  display: grid;
+  gap: var(--esp-4);
+  align-content: start;
+}
+.ferramenta__intro h2 {
+  font-size: var(--tam-h2);
+}
+.ferramenta__intro p {
+  max-width: 34ch;
+  font-size: var(--tam-texto-maior);
+}
+.ferramenta__caixa {
+  position: relative;
+  min-height: 23rem;
+  padding: clamp(1.25rem, 0.8rem + 2vw, 2.5rem);
+  border-radius: var(--raio-3);
+  background: var(--cor-nevoa);
+  border: var(--linha);
+  display: grid;
+  gap: var(--esp-5);
+  align-content: start;
+}
+.ferramenta__barra {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--cor-nevoa-funda);
+  overflow: hidden;
+}
+.ferramenta__barra span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--regua-gradiente);
+  transform-origin: left;
+  transform: scaleX(var(--progresso));
+  transition: transform var(--dur-entrada) var(--curva);
+}
+.ferramenta__pergunta {
+  border: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--esp-4);
+}
+.ferramenta__titulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  font-size: var(--tam-h3);
+  line-height: 1.2;
+  padding: 0;
+  margin-bottom: var(--esp-2);
+}
+.ferramenta__titulo:focus {
+  outline: none;
+}
+.ferramenta__ajuda {
+  color: var(--cor-mata-clara);
+  margin-top: calc(-1 * var(--esp-2));
+}
+.ferramenta__opcoes {
+  display: grid;
+  gap: var(--esp-2);
+}
+.ferramenta__opcao {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-3);
+  min-height: 3.5rem;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--cor-mata-clara);
+  border-radius: var(--raio-2);
+  background: var(--cor-nevoa);
+  color: var(--cor-mata);
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-micro) var(--curva),
+    color var(--dur-micro) var(--curva),
+    transform var(--dur-micro) var(--curva);
+}
+.ferramenta__opcao svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: none;
+  color: var(--cor-musgo);
+}
+.ferramenta__opcao[aria-pressed='true'] {
+  background: var(--cor-musgo);
+  border-color: var(--cor-musgo);
+  color: var(--cor-nevoa);
+}
+.ferramenta__opcao[aria-pressed='true'] svg {
+  color: var(--cor-nevoa);
+}
+@media (hover: hover) {
+  .ferramenta__opcao:hover {
+    border-color: var(--cor-musgo);
+    transform: translateY(-1px);
+  }
+}
+.ferramenta__rodape {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--esp-4);
+}
+.ferramenta__voltar,
+.ferramenta__refazer {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  min-height: var(--toque);
+  border: 0;
+  background: transparent;
+  color: var(--cor-musgo);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+.ferramenta__voltar svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.ferramenta__planob {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--toque);
+}
+.ferramenta__resultado {
+  display: grid;
+  gap: var(--esp-4);
+  justify-items: start;
+}
+.ferramenta__resultado-titulo {
+  font-size: var(--tam-h3);
+}
+.ferramenta__resultado-titulo:focus {
+  outline: none;
+}
+.ferramenta__detalhe {
+  font-weight: 600;
+}
+.ferramenta__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-3);
+}
+.ferramenta__lembrete {
+  color: var(--cor-mata-clara);
+}
+.ferramenta__refazer {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+@media (min-width: 640px) {
+  .ferramenta__opcoes--grade {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1024px) {
+  .ferramenta__grade {
+    grid-template-columns: 5fr 7fr;
+    gap: var(--esp-8);
+  }
+}
+
+.ferramenta__aviso {
+  padding: var(--esp-3) var(--esp-4);
+  border-left: 3px solid var(--cor-cobre);
+  background: var(--cor-nevoa-funda);
+  border-radius: 0 var(--raio-2) var(--raio-2) 0;
+  font-weight: 500;
+}
+.ferramenta__caixa .icone {
+  display: inline-grid;
+  flex: none;
+}
+.ferramenta__opcao .icone svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  color: var(--cor-musgo);
+}
+.ferramenta__opcao[aria-pressed='true'] .icone svg {
+  color: var(--cor-nevoa);
+}
+.ferramenta__voltar .icone svg,
+.ferramenta__acoes .icone svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}

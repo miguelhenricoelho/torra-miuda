@@ -1,0 +1,25 @@
+---
+// Intro da torra (só no início): o grão do pingo do "i" torra, dá o primeiro crack e pousa no logo.
+import './intro.css';
+---
+
+<script is:inline>
+  // Decide antes do primeiro desenho se a intro vai rodar, para o site não piscar por baixo
+  (function () {
+    try {
+      var p = new URLSearchParams(location.search).get('intro');
+      var viu = sessionStorage.getItem('tm-intro-vista') === '1';
+      var reduzido = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var economia = navigator.connection && navigator.connection.saveData;
+      if (p === '1' || (p !== '0' && !viu && !reduzido && !economia && (navigator.hardwareConcurrency || 4) > 2)) {
+        document.documentElement.dataset.intro = 'pendente';
+        setTimeout(function () { if (document.documentElement.dataset.intro === 'pendente') delete document.documentElement.dataset.intro; }, 2500);
+      }
+    } catch (e) {}
+  })();
+</script>
+
+<script>
+  import { iniciarIntro } from './intro.js';
+  iniciarIntro();
+</script>

@@ -1,0 +1,27 @@
+---
+import Moldura from '../moldura/moldura.astro';
+import { TEXTOS } from './conteudo.js';
+import { FOTOS } from '../fotos/fotos.js';
+import { linkWhatsapp, MENSAGENS } from '../whatsapp/whatsapp.js';
+import './kit-secao.css';
+---
+
+<section class="kit" aria-labelledby="kit-titulo">
+  <div class="conteiner kit__grade">
+    <Moldura legenda={TEXTOS.legendaFoto} foto={FOTOS.coador} semente={14} classe="kit__moldura" transicao="foto-kit" />
+    <div class="kit__texto">
+      <p class="rotulo">Kit de presente</p>
+      <h2 id="kit-titulo">{TEXTOS.titulo}</h2>
+      <p>{TEXTOS.texto}</p>
+      <p class="kit__preco numero">R$ 129</p>
+      <blockquote class="kit__elogio">
+        <p>“{TEXTOS.elogio}”</p>
+        <footer>Cliente da Torra Miúda</footer>
+      </blockquote>
+      <div class="kit__acoes">
+        <a class="botao botao--grande" href="/kit-de-presente">Escolher a moagem do kit</a>
+        <a class="link-seta" href={linkWhatsapp(MENSAGENS.duvidaKit())} target="_blank" rel="noopener" data-wa>Tirar dúvida sobre o kit</a>
+      </div>
+    </div>
+  </div>
+</section>

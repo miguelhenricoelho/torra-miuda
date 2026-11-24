@@ -1,0 +1,62 @@
+.status {
+  display: grid;
+  gap: 0.375rem;
+  min-width: 8.5rem;
+}
+.status__nome {
+  font-weight: 600;
+  font-size: var(--tam-texto);
+  line-height: 1.25;
+}
+.status__trilho {
+  height: 5px;
+  border-radius: 5px;
+  background: var(--cor-mata-14);
+  overflow: hidden;
+}
+.status__cheio {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--regua-gradiente);
+  background-size: calc(100% / var(--progresso, 1)) 100%;
+  transform-origin: left;
+  transform: scaleX(var(--progresso, 0));
+  transition: transform var(--dur-entrada) var(--curva);
+}
+.status--cancelado .status__nome {
+  color: var(--cor-mata-clara);
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+}
+.status--cancelado .status__trilho {
+  background: repeating-linear-gradient(90deg, var(--cor-mata-14) 0 6px, transparent 6px 10px);
+}
+
+.status--completo .status__trilho {
+  height: 8px;
+  border-radius: 8px;
+}
+.status__etapas {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--esp-2) var(--esp-3);
+}
+.status__etapa {
+  font-size: var(--tam-rotulo);
+  line-height: 1.25;
+  color: var(--cor-mata-clara);
+}
+.status__etapa[data-feita='sim'] {
+  color: var(--cor-mata);
+}
+.status__etapa[aria-current='step'] {
+  font-weight: 700;
+}
+@media (prefers-reduced-motion: reduce) {
+  .status__cheio {
+    transition: none;
+  }
+}

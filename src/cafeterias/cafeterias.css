@@ -1,0 +1,48 @@
+.cafeterias {
+  padding-block: var(--esp-secao);
+}
+.cafeterias__grade {
+  display: grid;
+  gap: var(--esp-7);
+}
+.cafeterias h2 {
+  font-size: var(--tam-h2-calmo);
+}
+.cafeterias__motivos {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--esp-5);
+  border-top: 1.5px solid var(--cor-mata);
+}
+.cafeterias__motivos li {
+  padding-block: var(--esp-5);
+  border-bottom: var(--linha);
+}
+.cafeterias__motivos h3 {
+  font-family: var(--fonte-texto);
+  font-size: var(--tam-texto-maior);
+  font-weight: 600;
+  margin-bottom: var(--esp-1);
+}
+.cafeterias__motivos p {
+  color: var(--cor-mata-clara);
+  max-width: 50ch;
+}
+.cafeterias__form {
+  display: grid;
+  gap: var(--esp-4);
+  align-content: start;
+  padding: clamp(1.25rem, 0.8rem + 2vw, 2.25rem);
+  border-radius: var(--raio-3);
+  background: var(--cor-nevoa-funda);
+}
+.cafeterias__form .botao svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+@media (min-width: 1024px) {
+  .cafeterias__grade {
+    grid-template-columns: 7fr 5fr;
+    gap: var(--esp-8);
+  }
+}

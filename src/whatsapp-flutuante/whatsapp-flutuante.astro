@@ -1,0 +1,16 @@
+---
+import Icone from '../icone/icone.astro';
+import { linkWhatsapp, MENSAGENS } from '../whatsapp/whatsapp.js';
+import './whatsapp-flutuante.css';
+
+const { mensagem = MENSAGENS.ajudaEscolher() } = Astro.props;
+---
+
+<a class="wa-flutuante" href={linkWhatsapp(mensagem)} target="_blank" rel="noopener" data-visivel="false">
+  <Icone nome="whatsapp" />WhatsApp
+</a>
+
+<script>
+  import { iniciarFlutuante } from './whatsapp-flutuante.js';
+  iniciarFlutuante();
+</script>

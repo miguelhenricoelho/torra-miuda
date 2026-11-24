@@ -1,0 +1,208 @@
+.topo-fixo {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 30;
+}
+
+/* Faixa de informação (só desktop) */
+.faixa {
+  display: none;
+  height: var(--altura-faixa);
+  background: var(--cor-mata);
+  color: var(--cor-nevoa);
+}
+.faixa__dentro {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-5);
+}
+.faixa p {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-2);
+  font-size: var(--tam-texto);
+}
+.faixa__itens span + span::before {
+  content: '·';
+  margin-right: var(--esp-2);
+  color: var(--cor-nevoa-70);
+}
+.faixa__ponto {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--cor-nevoa);
+}
+.faixa__status:has([data-aberto='false']) .faixa__ponto {
+  background: transparent;
+  border: 1.5px solid var(--cor-nevoa);
+}
+@media (min-width: 1024px) {
+  .faixa {
+    display: block;
+  }
+}
+
+/* Barra principal */
+.topo {
+  height: var(--altura-topo);
+  background: var(--cor-nevoa);
+  border-bottom: var(--linha);
+}
+.topo__dentro {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--esp-5);
+}
+.topo__nav {
+  display: none;
+  gap: var(--esp-5);
+  margin-left: var(--esp-4);
+}
+.topo__link {
+  position: relative;
+  color: var(--cor-mata);
+  font-weight: 500;
+  text-decoration: none;
+  padding-block: var(--esp-2);
+}
+.topo__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  height: 2px;
+  background: var(--cor-musgo);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-micro) var(--curva);
+}
+.topo__link[aria-current='page']::after {
+  transform: none;
+}
+@media (hover: hover) {
+  .topo__link:hover::after {
+    transform: none;
+  }
+}
+.topo__acoes {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--esp-2);
+}
+.topo__acoes .topo__qual {
+  display: none;
+}
+.topo__menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--esp-2);
+  min-width: var(--toque);
+  min-height: var(--toque);
+  padding: 0 var(--esp-2);
+  border: 0;
+  border-radius: var(--raio-2);
+  background: transparent;
+  color: var(--cor-mata);
+  font-weight: 600;
+  cursor: pointer;
+}
+.topo__menu svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+@media (min-width: 1180px) {
+  .topo__nav {
+    display: flex;
+  }
+  .topo__menu {
+    display: none;
+  }
+  .topo__acoes .topo__qual {
+    display: inline-flex;
+  }
+}
+
+/* Menu do celular em tela cheia */
+.menu-celular {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  background: var(--cor-nevoa);
+  overflow-y: auto;
+  padding-bottom: max(var(--esp-6), env(safe-area-inset-bottom));
+}
+.menu-celular[hidden] {
+  display: none;
+}
+.menu-celular__topo {
+  height: var(--altura-topo);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: none;
+}
+.menu-celular__fechar {
+  display: grid;
+  place-items: center;
+  width: var(--toque);
+  height: var(--toque);
+  border: 0;
+  background: transparent;
+  color: var(--cor-mata);
+  cursor: pointer;
+}
+.menu-celular__fechar svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+.menu-celular__nav {
+  display: grid;
+  margin-top: var(--esp-5);
+  border-top: var(--linha);
+}
+.menu-celular__link {
+  display: flex;
+  align-items: center;
+  min-height: 3.5rem;
+  border-bottom: var(--linha);
+  font-family: var(--fonte-titulo);
+  font-size: 1.625rem;
+  font-weight: 600;
+  color: var(--cor-mata);
+  text-decoration: none;
+}
+.menu-celular__link[aria-current='page'] {
+  color: var(--cor-musgo);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+.menu-celular__rodape {
+  display: grid;
+  gap: var(--esp-3);
+  margin-top: var(--esp-6);
+}
+.menu-celular__redes {
+  display: flex;
+  gap: var(--esp-5);
+  margin-top: var(--esp-3);
+}
+.menu-celular__redes a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  min-height: var(--toque);
+  font-weight: 600;
+}
+.menu-celular__redes svg {
+  width: 1.375rem;
+  height: 1.375rem;
+}

@@ -1,0 +1,21 @@
+---
+import Layout from '../layout/layout.astro';
+import PalcoPagina from '../palco-pagina/palco-pagina.astro';
+import SerraPagina from '../serra-pagina/serra-pagina.astro';
+import CtaFinal from '../cta-final/cta-final.astro';
+import { PALCO } from '../serra-pagina/conteudo.js';
+import { FOTOS } from '../fotos/fotos.js';
+---
+
+<Layout titulo="A Serra de Baturité e os seis sítios" descricao="De onde vem o café da Torra Miúda: seis sítios da Serra de Baturité, no Ceará, com nome do produtor e altitude em cada pacote.">
+  <PalcoPagina rotulo={PALCO.rotulo} titulo={PALCO.titulo} apoio={PALCO.apoio} legendaFoto={PALCO.legendaFoto} foto={FOTOS.serra} semente={23} />
+  <div class="folha">
+    <SerraPagina />
+    <CtaFinal />
+  </div>
+</Layout>
+
+<script>
+  import { iniciarFolha } from '../folha/folha.js';
+  iniciarFolha();
+</script>

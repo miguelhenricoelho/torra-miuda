@@ -1,0 +1,53 @@
+---
+import Icone from '../icone/icone.astro';
+import { MOTIVOS } from './conteudo.js';
+import { linkWhatsapp, MENSAGENS } from '../whatsapp/whatsapp.js';
+import './cafeterias.css';
+---
+
+<section class="cafeterias" aria-labelledby="motivos-titulo">
+  <div class="conteiner cafeterias__grade">
+    <div>
+      <h2 id="motivos-titulo">O que a sua cafeteria recebe</h2>
+      <ol class="cafeterias__motivos">
+        {
+          MOTIVOS.map((motivo) => (
+            <li>
+              <h3>{motivo.titulo}</h3>
+              <p>{motivo.texto}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+    <form class="cafeterias__form" data-cafeteria>
+      <h2>Fale com a Iara</h2>
+      <p>Conte o nome e onde fica a sua cafeteria. A conversa continua no WhatsApp.</p>
+      <div class="campo">
+        <label class="campo__rotulo" for="cafeteria-nome">Nome da cafeteria</label>
+        <input class="campo__entrada" id="cafeteria-nome" autocomplete="organization" />
+      </div>
+      <div class="campo">
+        <label class="campo__rotulo" for="cafeteria-lugar">Bairro e cidade</label>
+        <input class="campo__entrada" id="cafeteria-lugar" />
+      </div>
+      <a class="botao botao--grande" href={linkWhatsapp(MENSAGENS.cafeteria('', ''))} target="_blank" rel="noopener" data-wa data-cafeteria-enviar>
+        <Icone nome="whatsapp" />Conversar pelo WhatsApp
+      </a>
+    </form>
+  </div>
+</section>
+
+<script>
+  import { linkWhatsapp, MENSAGENS } from '../whatsapp/whatsapp.js';
+  const formulario = document.querySelector('[data-cafeteria]');
+  if (formulario) {
+    const nome = formulario.querySelector('#cafeteria-nome');
+    const lugar = formulario.querySelector('#cafeteria-lugar');
+    const botao = formulario.querySelector('[data-cafeteria-enviar]');
+    const atualizar = () => {
+      botao.href = linkWhatsapp(MENSAGENS.cafeteria(nome.value.trim(), lugar.value.trim()));
+    };
+    formulario.addEventListener('input', atualizar);
+  }
+</script>

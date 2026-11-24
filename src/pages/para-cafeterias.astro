@@ -1,0 +1,12 @@
+---
+import Layout from '../layout/layout.astro';
+import Cabecalho from '../cabecalho/cabecalho.astro';
+import Cafeterias from '../cafeterias/cafeterias.astro';
+import { CABECALHO } from '../cafeterias/conteudo.js';
+import { MENSAGENS } from '../whatsapp/whatsapp.js';
+---
+
+<Layout titulo="Café da serra para cafeterias" descricao="Café especial da Serra de Baturité para cafeterias, torrado duas vezes por semana, só depois do pedido. Nove cafeterias de Fortaleza já servem." classe="pagina-interna" mensagemWhatsapp={MENSAGENS.cafeteria('', '')}>
+  <Cabecalho rotulo={CABECALHO.rotulo} titulo={CABECALHO.titulo} apoio={CABECALHO.apoio} semente={8} />
+  <Cafeterias />
+</Layout>

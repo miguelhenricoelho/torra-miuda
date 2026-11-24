@@ -1,0 +1,49 @@
+---
+// O global.css vem primeiro: os estilos das partes sobrescrevem os da base
+import '../global/global.css';
+import './layout.css';
+import Seo from '../seo/seo.astro';
+import Header from '../header/header.astro';
+import Rodape from '../rodape/rodape.astro';
+import Intro from '../intro/intro.astro';
+import Campanha from '../campanha/campanha.astro';
+import WhatsappFlutuante from '../whatsapp-flutuante/whatsapp-flutuante.astro';
+import Sacola from '../sacola/sacola.jsx';
+
+const { titulo, descricao, dados, intro = false, mensagemWhatsapp, classe = '', semIndice = false } = Astro.props;
+const modoRevisao = import.meta.env.PUBLIC_MODO_REVISAO === 'true';
+---
+
+<!doctype html>
+<html lang="pt-BR" class:list={{ 'modo-revisao': modoRevisao }}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#eef1e9" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preload" href="/fontes/schibsted-grotesk-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fontes/alegreya-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <Seo titulo={titulo} descricao={descricao} dados={dados} semIndice={semIndice} />
+    {intro && <Intro />}
+  </head>
+  <body class={classe}>
+    <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+    <Header />
+    <Campanha />
+    <main id="conteudo" tabindex="-1">
+      <slot />
+    </main>
+    <Rodape />
+    <WhatsappFlutuante mensagem={mensagemWhatsapp} />
+    <Sacola client:idle />
+    <script>
+      import { preencherTorra } from '../proxima-torra/proxima-torra.js';
+      import { animarReguas } from '../regua/regua.js';
+      preencherTorra();
+      animarReguas();
+    </script>
+  </body>
+</html>

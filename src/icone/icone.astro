@@ -1,0 +1,7 @@
+---
+import { ICONES } from './icones.js';
+
+const { nome } = Astro.props;
+---
+
+<Fragment set:html={ICONES[nome] ?? ''} />

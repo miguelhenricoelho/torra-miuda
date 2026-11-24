@@ -1,0 +1,43 @@
+/* ===== Palco parado (rolagem estilo PicPay) ===== */
+.palco {
+  position: sticky;
+  top: var(--palco-topo, calc(var(--altura-topo) + var(--altura-faixa)));
+  z-index: 1;
+  min-height: calc(100svh - var(--altura-topo) - var(--altura-faixa));
+  margin-top: calc(var(--altura-topo) + var(--altura-faixa));
+  display: grid;
+  align-items: center;
+  background: var(--cor-nevoa);
+  overflow: hidden;
+}
+.palco__veu {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: var(--cor-mata);
+  opacity: 0;
+  pointer-events: none;
+}
+.palco__dentro {
+  position: relative;
+  z-index: 1;
+  transform-origin: 50% 30%;
+  will-change: transform;
+}
+
+/* ===== A folha que sobe por cima ===== */
+.folha {
+  position: relative;
+  z-index: 2;
+  background: var(--cor-nevoa);
+  border-radius: var(--raio-folha) var(--raio-folha) 0 0;
+  box-shadow: var(--sombra-folha);
+  overflow: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .palco {
+    position: relative;
+    top: 0;
+  }
+}

@@ -1,0 +1,55 @@
+.kit {
+  padding-block: var(--esp-secao);
+}
+.kit__grade {
+  display: grid;
+  gap: var(--esp-6);
+  align-items: center;
+}
+.kit__moldura {
+  aspect-ratio: 4 / 3;
+}
+.kit__texto {
+  display: grid;
+  gap: var(--esp-4);
+  justify-items: start;
+}
+.kit h2 {
+  font-size: var(--tam-h2-calmo);
+  max-width: 22ch;
+}
+.kit__texto > p {
+  max-width: 46ch;
+}
+.kit__preco {
+  font-size: var(--tam-numero);
+  font-weight: 500;
+  line-height: 1;
+}
+.kit__elogio {
+  padding-left: var(--esp-4);
+  border-left: 3px solid var(--cor-cobre);
+}
+.kit__elogio p {
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--tam-h3);
+  line-height: 1.3;
+}
+.kit__elogio footer {
+  margin-top: var(--esp-2);
+  color: var(--cor-mata-clara);
+}
+.kit__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-3) var(--esp-5);
+}
+@media (min-width: 1024px) {
+  .kit__grade {
+    grid-template-columns: 5fr 6fr;
+    gap: var(--esp-8);
+  }
+}

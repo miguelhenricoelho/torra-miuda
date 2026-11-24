@@ -1,0 +1,28 @@
+---
+import { listarLotes } from '../services/catalogo.js';
+import { NOME_PERFIL, nomeHtml } from '../dados/dados.js';
+import './perfis-cafes.css';
+
+const lotes = listarLotes();
+---
+
+<div class="perfis">
+  <h3>O jeito de cada café desta colheita</h3>
+  <table>
+    <thead>
+      <tr><th scope="col">Café</th><th scope="col">Jeito</th><th scope="col">Com leite</th><th scope="col">Espresso</th></tr>
+    </thead>
+    <tbody>
+      {
+        lotes.map((lote) => (
+          <tr>
+            <td><a href={`/cafes/${lote.slug}`} set:html={nomeHtml(lote.nome)} />{lote.estado === 'esgotado' && <span class="perfis__esgotado"> · esgotado</span>}</td>
+            <td data-rotulo="Jeito">{NOME_PERFIL[lote.perfil]}</td>
+            <td data-rotulo="Com leite">{lote.leite ? 'Vai bem' : 'Melhor puro'}</td>
+            <td data-rotulo="Espresso">{lote.espresso ? 'Vai bem' : 'Não indicado'}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

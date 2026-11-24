@@ -1,0 +1,23 @@
+---
+// Seção da ferramenta "Qual é o seu café?" (no início e na página própria)
+import Ferramenta from '../ferramenta/ferramenta.jsx';
+import { TEXTOS } from './conteudo.js';
+import './qual-cafe.css';
+
+// cedo: na página própria a ferramenta é o conteúdo principal e carrega logo
+const { nivel = 'h2', fundo = true, cedo = false } = Astro.props;
+const Titulo = nivel;
+---
+
+<section class:list={['qual-cafe', { 'qual-cafe--fundo': fundo }]} id="ferramenta" aria-labelledby="ferramenta-titulo">
+  <div class="conteiner qual-cafe__grade">
+    <div class="qual-cafe__intro">
+      <p class="rotulo">Escolha guiada</p>
+      <Titulo id="ferramenta-titulo">{TEXTOS.titulo}</Titulo>
+      <p>{TEXTOS.apoio}</p>
+    </div>
+    <div class="qual-cafe__ferramenta">
+      {cedo ? <Ferramenta client:load /> : <Ferramenta client:visible />}
+    </div>
+  </div>
+</section>

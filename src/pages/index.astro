@@ -1,0 +1,45 @@
+---
+import Layout from '../layout/layout.astro';
+import Hero from '../hero/hero.astro';
+import ComoFunciona from '../como-funciona/como-funciona.astro';
+import Catalogo from '../catalogo/catalogo.astro';
+import TabelaMoagem from '../tabela-moagem/tabela-moagem.astro';
+import QualCafe from '../qual-cafe/qual-cafe.astro';
+import SerraSecao from '../serra-secao/serra-secao.astro';
+import TorraClara from '../torra-clara/torra-clara.astro';
+import KitSecao from '../kit-secao/kit-secao.astro';
+import AssinaturaSecao from '../assinatura-secao/assinatura-secao.astro';
+import Provas from '../provas/provas.astro';
+import Faq from '../faq/faq.astro';
+import CtaFinal from '../cta-final/cta-final.astro';
+import '../catalogo/catalogo.css';
+---
+
+<Layout
+  descricao="Cafés especiais de 6 sítios da Serra de Baturité, torrados em pequenos lotes toda terça e sexta, só depois do seu pedido. Em grão ou moído, com entrega em Fortaleza e envio para todo o Brasil."
+  intro
+>
+  <Hero />
+  <div class="folha">
+    <ComoFunciona />
+    <section class="cafes" id="cafes" aria-labelledby="cafes-titulo">
+      <div class="conteiner">
+        <Catalogo />
+        <TabelaMoagem />
+      </div>
+    </section>
+    <QualCafe />
+    <SerraSecao />
+    <TorraClara />
+    <KitSecao />
+    <AssinaturaSecao />
+    <Provas />
+    <Faq />
+    <CtaFinal />
+  </div>
+</Layout>
+
+<script>
+  import { iniciarFolha } from '../folha/folha.js';
+  iniciarFolha();
+</script>

@@ -1,0 +1,21 @@
+---
+// Página de produto: foto à esquerda, escolha à direita (café e kit)
+import Moldura from '../moldura/moldura.astro';
+import './produto.css';
+
+const { trilha, legendaFoto, foto = null, transicao, semente = 6 } = Astro.props;
+---
+
+<section class="produto conteiner">
+  <nav class="produto__trilha" aria-label="Você está em">
+    {trilha.map((item, i) => (i < trilha.length - 1 ? <><a href={item.href}>{item.rotulo}</a><span aria-hidden="true">/</span></> : <span aria-current="page" set:html={item.html ?? item.rotulo} />))}
+  </nav>
+  <div class="produto__grade">
+    <div class="produto__imagem">
+      <Moldura legenda={legendaFoto} foto={foto} prioridade semente={semente} proporcao="4 / 5" transicao={transicao} classe="produto__moldura" />
+    </div>
+    <div class="produto__escolha">
+      <slot />
+    </div>
+  </div>
+</section>

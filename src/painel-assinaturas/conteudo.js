@@ -1,0 +1,21 @@
+export const TEXTOS_ASSINATURAS = {
+  filtros: { ativa: 'Ativas', pausada: 'Pausadas', cancelada: 'Canceladas' },
+  resumo: (ativas, pagas) => `${ativas} ${ativas === 1 ? 'assinatura ativa' : 'assinaturas ativas'}, ${pagas} ${pagas === 1 ? 'paga' : 'pagas'} este mês`,
+  mes: 'Este mês',
+  pago: 'Pago',
+  enviado: 'Enviado',
+  pausar: 'Pausar',
+  retomar: 'Retomar',
+  cancelar: 'Cancelar',
+  confirmarCancelar: (nome) => `Cancelar a assinatura de ${nome}?`,
+  sim: 'Sim, cancelar',
+  nao: 'Manter',
+  vazio: {
+    ativa: ['Nenhuma assinatura ativa.', 'Quando alguém assinar pelo WhatsApp, cadastre aqui.'],
+    pausada: ['Nenhuma assinatura pausada.', 'Quem pedir uma pausa aparece aqui.'],
+    cancelada: ['Nenhuma assinatura cancelada.', 'Que continue assim.'],
+  },
+  erro: 'Não deu para carregar as assinaturas.',
+  tentar: 'Tentar de novo',
+  desde: 'desde',
+};

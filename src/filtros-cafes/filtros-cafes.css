@@ -1,0 +1,41 @@
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-4) var(--esp-7);
+  margin-bottom: var(--esp-5);
+}
+.filtros__grupo {
+  display: grid;
+  gap: var(--esp-2);
+}
+.filtros__rotulo {
+  font-size: var(--tam-rotulo);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cor-mata-clara);
+}
+.filtros__opcoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-2);
+}
+.filtros button {
+  min-height: var(--toque);
+  padding: 0.5rem 1rem;
+  border: 1.5px solid var(--cor-mata-clara);
+  border-radius: 999px;
+  background: var(--cor-nevoa);
+  color: var(--cor-mata);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--dur-micro) var(--curva), color var(--dur-micro) var(--curva);
+}
+.filtros button[aria-pressed='true'] {
+  background: var(--cor-musgo);
+  border-color: var(--cor-musgo);
+  color: var(--cor-nevoa);
+}
+.ficha[hidden] {
+  display: none;
+}

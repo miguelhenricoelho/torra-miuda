@@ -1,0 +1,24 @@
+---
+import Assinatura from '../assinatura/assinatura.jsx';
+import { TEXTOS } from './conteudo.js';
+import { linkWhatsapp, MENSAGENS } from '../whatsapp/whatsapp.js';
+
+const { nivel = 'h2', id = 'assinatura-titulo' } = Astro.props;
+const Titulo = nivel;
+---
+
+<section class="assinatura" aria-labelledby={id}>
+  <div class="conteiner assinatura__grade">
+    <div class="assinatura__texto">
+      <p class="rotulo">Assinatura</p>
+      <Titulo id={id}>{TEXTOS.titulo}</Titulo>
+      <p class="assinatura__preco"><span class="numero">R$ 59</span><span>{TEXTOS.preco}</span></p>
+      <ul class="assinatura__lista">
+        {TEXTOS.itens.map((item) => <li>{item}</li>)}
+      </ul>
+      <a class="link-seta" href={linkWhatsapp(MENSAGENS.duvidaAssinatura())} target="_blank" rel="noopener" data-wa>Tirar dúvida sobre a assinatura</a>
+      <slot />
+    </div>
+    <Assinatura client:visible />
+  </div>
+</section>

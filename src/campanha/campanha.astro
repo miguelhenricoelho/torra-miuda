@@ -1,0 +1,28 @@
+---
+// Faixa de campanha (Dia das Mães, Natal). Parte 2: datas e texto vêm do painel.
+// Estados: antes (não aparece), durante (aparece), encerrada (não aparece).
+import { CONFIG } from '../dados/dados.js';
+import './campanha.css';
+
+const campanha = CONFIG.campanha;
+---
+
+{
+  campanha && (
+    <aside class="campanha" data-inicio={campanha.inicio} data-fim={campanha.fim} hidden>
+      <div class="conteiner campanha__dentro">
+        <p>{campanha.texto}</p>
+        <a href={campanha.href}>{campanha.rotulo}</a>
+      </div>
+    </aside>
+  )
+}
+
+<script>
+  import { agoraDaPagina } from '../proxima-torra/proxima-torra.js';
+  const faixa = document.querySelector('.campanha');
+  if (faixa) {
+    const hoje = agoraDaPagina().toISOString().slice(0, 10);
+    faixa.hidden = !(hoje >= faixa.dataset.inicio && hoje <= faixa.dataset.fim);
+  }
+</script>

@@ -1,0 +1,71 @@
+.plano-b {
+  padding-block: var(--esp-secao);
+  background: var(--cor-nevoa-funda);
+}
+.plano-b__grade {
+  display: grid;
+  gap: var(--esp-6);
+}
+.plano-b h2 {
+  font-size: var(--tam-h2-calmo);
+}
+.plano-b .tabela-moagem {
+  margin-top: 0;
+}
+.perfis {
+  display: grid;
+  gap: var(--esp-4);
+}
+.perfis h3 {
+  font-size: var(--tam-h3);
+}
+.perfis table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.perfis th,
+.perfis td {
+  text-align: left;
+  padding: var(--esp-3) var(--esp-2);
+  border-bottom: var(--linha);
+}
+.perfis th {
+  font-size: var(--tam-rotulo);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--cor-mata-clara);
+}
+.perfis td:first-child {
+  font-weight: 600;
+}
+.perfis__esgotado {
+  color: var(--cor-cobre-fundo);
+  font-weight: 500;
+}
+
+/* No celular, cada café vira um bloco com os rótulos ao lado */
+@media (max-width: 639px) {
+  .perfis thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .perfis tr {
+    display: grid;
+    padding-block: var(--esp-3);
+    border-bottom: var(--linha);
+  }
+  .perfis td {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--esp-4);
+    padding: var(--esp-1) 0;
+    border: 0;
+  }
+  .perfis td[data-rotulo]::before {
+    content: attr(data-rotulo);
+    color: var(--cor-mata-clara);
+  }
+}

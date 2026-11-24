@@ -1,0 +1,52 @@
+.cafes {
+  padding-block: var(--esp-secao);
+}
+.cafes__cabeca {
+  display: grid;
+  gap: var(--esp-4);
+  margin-bottom: var(--esp-6);
+}
+.cafes__cabeca h2 {
+  font-size: var(--tam-h2);
+}
+.cafes__linha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--esp-2) var(--esp-4);
+}
+.cafes__intro {
+  max-width: 52ch;
+  font-size: var(--tam-texto-maior);
+}
+.cafes__torra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--esp-2);
+}
+
+.catalogo {
+  display: grid;
+  border-top: 1.5px solid var(--cor-mata);
+}
+.catalogo__vazio {
+  padding-block: var(--esp-6);
+  color: var(--cor-mata-clara);
+}
+.cafes__exemplo {
+  margin-bottom: var(--esp-5);
+}
+.cafes__ajuda {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-3) var(--esp-5);
+  margin-top: var(--esp-6);
+  padding: var(--esp-5);
+  border-radius: var(--raio-3);
+  background: var(--cor-nevoa-funda);
+  font-family: var(--fonte-titulo);
+  font-size: var(--tam-h3);
+  font-weight: 600;
+}

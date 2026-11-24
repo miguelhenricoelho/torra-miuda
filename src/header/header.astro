@@ -1,0 +1,64 @@
+---
+import Logo from '../logo/logo.astro';
+import Icone from '../icone/icone.astro';
+import SacolaBotao from '../sacola-botao/sacola-botao.jsx';
+import { CONFIG } from '../dados/dados.js';
+import { linkWhatsapp, MENSAGENS } from '../whatsapp/whatsapp.js';
+import { LINKS, LINKS_EXTRAS } from './conteudo.js';
+import './header.css';
+
+const atual = Astro.url.pathname.replace(/\/$/, '') || '/';
+const ehAtual = (href) => atual === href || (href !== '/' && atual.startsWith(`${href}/`));
+---
+
+<div class="topo-fixo" data-topo>
+  <div class="faixa">
+    <div class="conteiner faixa__dentro">
+      <p class="faixa__itens"><span>Entrega em Fortaleza: R$ {CONFIG.taxaEntrega}</span><span>Correios para todo o Brasil</span><span>Retirada na Aldeota</span></p>
+      <p class="faixa__status"><span class="faixa__ponto" aria-hidden="true"></span><span data-atendimento>WhatsApp: pedidos de segunda a sábado, das 8h às 18h</span></p>
+    </div>
+  </div>
+  <header class="topo">
+    <div class="conteiner topo__dentro">
+      <Logo />
+      <nav class="topo__nav" aria-label="Principal">
+        {LINKS.map((link) => <a class="topo__link" href={link.href} aria-current={ehAtual(link.href) ? 'page' : undefined}>{link.rotulo}</a>)}
+      </nav>
+      <div class="topo__acoes">
+        <a class="botao botao--contorno topo__qual" href="/qual-e-o-seu-cafe" aria-current={ehAtual('/qual-e-o-seu-cafe') ? 'page' : undefined}>Qual é o seu café?</a>
+        <SacolaBotao client:idle />
+        <button class="topo__menu" type="button" aria-expanded="false" aria-controls="menu-celular">
+          <Icone nome="menu" /><span>Menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="menu-celular" id="menu-celular" hidden>
+    <div class="menu-celular__topo conteiner">
+      <Logo />
+      <button class="menu-celular__fechar" type="button" aria-label="Fechar menu"><Icone nome="fechar" /></button>
+    </div>
+    <nav class="menu-celular__nav conteiner" aria-label="Menu">
+      {
+        [...LINKS, ...LINKS_EXTRAS].map((link) => (
+          <a class="menu-celular__link" href={link.href} aria-current={ehAtual(link.href) ? 'page' : undefined}>
+            {link.rotulo}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="menu-celular__rodape conteiner">
+      <a class="botao botao--grande" href="/qual-e-o-seu-cafe">Qual é o seu café?</a>
+      <a class="botao botao--contorno botao--grande" href={linkWhatsapp(MENSAGENS.ajudaEscolher())} target="_blank" rel="noopener"><Icone nome="whatsapp" />Falar no WhatsApp</a>
+      <p class="menu-celular__redes">
+        <a href={CONFIG.instagram} target="_blank" rel="noopener"><Icone nome="instagram" />Instagram</a>
+        <a href={CONFIG.tiktok} target="_blank" rel="noopener"><Icone nome="tiktok" />TikTok</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { iniciarMenu } from './header.js';
+  iniciarMenu();
+</script>

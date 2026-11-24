@@ -1,0 +1,33 @@
+.cta-final {
+  padding-block: var(--esp-secao);
+  background: var(--cor-mata);
+  color: var(--cor-nevoa);
+}
+.cta-final__dentro {
+  display: grid;
+  gap: var(--esp-6);
+  justify-items: start;
+}
+.cta-final h2 {
+  font-size: var(--tam-hero);
+  max-width: 20ch;
+}
+.cta-final__data {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--cor-nevoa);
+  text-decoration: underline;
+  text-decoration-color: var(--cor-cobre);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.12em;
+}
+.cta-final__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-3);
+}
+@media (max-width: 479px) {
+  .cta-final__acoes .botao {
+    width: 100%;
+  }
+}

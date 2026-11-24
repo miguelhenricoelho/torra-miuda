@@ -1,0 +1,28 @@
+---
+import './filtros-cafes.css';
+---
+
+<div class="filtros" role="group" aria-label="Filtrar cafés" data-filtros>
+  <div class="filtros__grupo">
+    <span class="filtros__rotulo" id="filtro-perfil">Jeito</span>
+    <div class="filtros__opcoes" role="group" aria-labelledby="filtro-perfil">
+      <button type="button" data-filtro="perfil" data-valor="" aria-pressed="true">Todos</button>
+      <button type="button" data-filtro="perfil" data-valor="suave" aria-pressed="false">Suave</button>
+      <button type="button" data-filtro="perfil" data-valor="equilibrado" aria-pressed="false">Equilibrado</button>
+      <button type="button" data-filtro="perfil" data-valor="encorpado" aria-pressed="false">Encorpado</button>
+    </div>
+  </div>
+  <div class="filtros__grupo">
+    <span class="filtros__rotulo" id="filtro-uso">Como você toma</span>
+    <div class="filtros__opcoes" role="group" aria-labelledby="filtro-uso">
+      <button type="button" data-filtro="leite" data-valor="true" aria-pressed="false">Com leite</button>
+      <button type="button" data-filtro="espresso" data-valor="true" aria-pressed="false">No espresso</button>
+    </div>
+  </div>
+  <p class="so-leitor" aria-live="polite" data-filtros-status></p>
+</div>
+
+<script>
+  import { iniciarFiltros } from './filtros-cafes.js';
+  iniciarFiltros();
+</script>

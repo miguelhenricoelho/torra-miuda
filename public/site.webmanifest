@@ -1,0 +1,9 @@
+{
+  "name": "Torra Miúda Cafés Especiais",
+  "short_name": "Torra Miúda",
+  "icons": [{ "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }],
+  "theme_color": "#eef1e9",
+  "background_color": "#eef1e9",
+  "display": "browser",
+  "lang": "pt-BR"
+}

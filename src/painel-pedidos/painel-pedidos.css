@@ -1,0 +1,198 @@
+.pedidos__filtros {
+  display: grid;
+  gap: var(--esp-3);
+  margin-bottom: var(--esp-4);
+}
+.pedidos__filtros .painel-abas {
+  margin-bottom: 0;
+}
+.pedidos__busca {
+  position: relative;
+  max-width: 26rem;
+}
+.pedidos__busca .icone {
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  translate: 0 -50%;
+  width: 1.25rem;
+  height: 1.25rem;
+  display: inline-flex;
+  color: var(--cor-mata-clara);
+  pointer-events: none;
+}
+.pedidos__busca input {
+  padding-left: 2.75rem;
+}
+.pedidos__busca input::-webkit-search-cancel-button {
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  background: var(--cor-mata-clara);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6L6 18'/%3E%3C/svg%3E") center / contain no-repeat;
+  cursor: pointer;
+}
+
+.pedidos__lista {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--esp-2);
+}
+.pedidos__cabeca {
+  display: none;
+}
+.pedido-linha {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'cliente total'
+    'codigo torra'
+    'status status';
+  gap: var(--esp-1) var(--esp-4);
+  padding: var(--esp-4);
+  border: 1.5px solid transparent;
+  border-radius: var(--raio-3);
+  background: var(--cor-nevoa-funda);
+  text-align: left;
+  transition: border-color var(--dur-micro) var(--curva);
+}
+.pedido-linha .status {
+  grid-area: status;
+  margin-top: var(--esp-2);
+}
+.pedido-linha__codigo {
+  grid-area: codigo;
+  font-size: var(--tam-rotulo);
+  font-weight: 600;
+  color: var(--cor-mata-clara);
+  letter-spacing: 0.03em;
+}
+.pedido-linha__cliente {
+  grid-area: cliente;
+  display: grid;
+  min-width: 0;
+}
+.pedido-linha__nome {
+  font-weight: 600;
+}
+.pedido-linha__receber {
+  color: var(--cor-mata-clara);
+}
+.pedido-linha__torra {
+  grid-area: torra;
+  justify-self: end;
+  font-size: var(--tam-rotulo);
+  color: var(--cor-mata-clara);
+  font-weight: 600;
+}
+.pedido-linha__total {
+  grid-area: total;
+  justify-self: end;
+  display: grid;
+  justify-items: end;
+  font-weight: 600;
+}
+.pedido-linha__pendente {
+  font-size: var(--tam-rotulo);
+  font-weight: 600;
+  color: var(--cor-cobre-fundo);
+}
+@media (hover: hover) {
+  .pedido-linha:hover {
+    border-color: var(--cor-musgo-35);
+  }
+}
+
+@media (min-width: 900px) {
+  .pedidos__cabeca,
+  .pedido-linha {
+    grid-template-columns: 6.5rem minmax(0, 1.6fr) 7.5rem 7.5rem minmax(9rem, 1fr);
+    grid-template-areas: none;
+    align-items: center;
+  }
+  .pedidos__cabeca {
+    display: grid;
+    gap: var(--esp-4);
+    padding: 0 var(--esp-4) var(--esp-1);
+    font-size: var(--tam-rotulo);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--cor-mata-clara);
+  }
+  .pedido-linha > * {
+    grid-area: auto !important;
+  }
+  .pedido-linha .status {
+    margin-top: 0;
+  }
+  .pedido-linha__torra,
+  .pedido-linha__total {
+    justify-self: start;
+    justify-items: start;
+  }
+  .pedido-linha__torra {
+    font-size: var(--tam-texto);
+    font-weight: 500;
+    color: var(--cor-mata);
+  }
+  .pedido-linha__codigo {
+    font-size: var(--tam-texto);
+    color: var(--cor-mata);
+  }
+}
+
+.detalhe__confirmar {
+  display: grid;
+  gap: var(--esp-3);
+  padding: var(--esp-4);
+  border-left: 3px solid var(--cor-cobre-fundo);
+  background: var(--cor-nevoa-funda);
+  border-radius: 0 var(--raio-2) var(--raio-2) 0;
+}
+.detalhe__dados {
+  display: grid;
+  gap: var(--esp-4);
+}
+.detalhe__bloco {
+  display: grid;
+  gap: var(--esp-1);
+  padding-top: var(--esp-4);
+  border-top: var(--linha);
+}
+.detalhe__bloco dd {
+  margin: 0;
+}
+.detalhe__fraco {
+  color: var(--cor-mata-clara);
+}
+.detalhe__itens {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--esp-1);
+}
+.detalhe__itens li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--esp-4);
+}
+.detalhe__itens .numero {
+  white-space: nowrap;
+}
+.detalhe__soma {
+  color: var(--cor-mata-clara);
+  padding-top: var(--esp-1);
+}
+.detalhe__total {
+  font-weight: 700;
+}
+.detalhe__pagamento {
+  display: grid;
+  gap: var(--esp-1);
+}
+.detalhe__whatsapp {
+  justify-self: start;
+}

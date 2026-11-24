@@ -1,0 +1,17 @@
+export const TEXTOS_TORRA = {
+  escolherData: 'Escolher a torra',
+  total: 'Total para torrar',
+  pacotes: 'Pacotes',
+  vazioTitulo: 'Nada confirmado para esta torra.',
+  vazioTexto: 'Os cafés aparecem aqui quando o atendimento confirma os pedidos.',
+  faltaConfirmar: (n) => `${n} ${n === 1 ? 'pedido ainda não foi confirmado' : 'pedidos ainda não foram confirmados'} e não ${n === 1 ? 'entra' : 'entram'} na soma.`,
+  marcar: (n) => `Torra feita: marcar ${n} ${n === 1 ? 'pedido' : 'pedidos'} como torrados`,
+  confirmarMarcar: 'Marcar todos os pedidos confirmados desta torra como torrados? Eles passam para a lista de embalar.',
+  sim: 'Sim, a torra está feita',
+  nao: 'Ainda não',
+  feito: (n) => `Pronto: ${n} ${n === 1 ? 'pedido foi' : 'pedidos foram'} para a lista de embalar.`,
+  erro: 'Não deu para carregar a torra.',
+  tentar: 'Tentar de novo',
+  hoje: 'hoje',
+  passada: 'última',
+};

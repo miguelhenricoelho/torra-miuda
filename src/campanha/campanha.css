@@ -1,0 +1,25 @@
+.campanha {
+  position: relative;
+  z-index: 3;
+  margin-top: calc(var(--altura-topo) + var(--altura-faixa));
+  background: var(--cor-cobre-fundo);
+  color: var(--cor-nevoa);
+}
+.campanha__dentro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-2) var(--esp-4);
+  padding-block: var(--esp-3);
+}
+.campanha a {
+  color: var(--cor-nevoa);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--toque);
+}
+.campanha:not([hidden]) ~ main .hero {
+  margin-top: 0;
+}

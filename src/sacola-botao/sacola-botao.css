@@ -1,0 +1,33 @@
+.sacola-botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--esp-2);
+  min-width: var(--toque);
+  min-height: var(--toque);
+  padding: 0 var(--esp-2);
+  border: 0;
+  border-radius: var(--raio-2);
+  background: transparent;
+  color: var(--cor-mata);
+  cursor: pointer;
+}
+.sacola-botao svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.sacola-botao__contador {
+  min-width: 1.5rem;
+  height: 1.5rem;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--cor-musgo);
+  color: var(--cor-nevoa);
+  font-size: var(--tam-rotulo);
+  font-weight: 600;
+}
+.sacola-botao__contador[data-vazio='true'] {
+  background: var(--cor-nevoa-funda);
+  color: var(--cor-mata);
+}

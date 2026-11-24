@@ -1,0 +1,32 @@
+.qual-cafe {
+  padding-block: var(--esp-secao);
+}
+.qual-cafe--fundo {
+  background: var(--cor-nevoa-funda);
+}
+.qual-cafe__grade {
+  display: grid;
+  gap: var(--esp-6);
+}
+.qual-cafe__intro {
+  display: grid;
+  gap: var(--esp-4);
+  align-content: start;
+}
+.qual-cafe__intro h1,
+.qual-cafe__intro h2 {
+  font-size: var(--tam-h2);
+}
+.qual-cafe__intro p:not(.rotulo) {
+  max-width: 34ch;
+  font-size: var(--tam-texto-maior);
+}
+.qual-cafe__ferramenta {
+  min-height: 23rem;
+}
+@media (min-width: 1024px) {
+  .qual-cafe__grade {
+    grid-template-columns: 5fr 7fr;
+    gap: var(--esp-8);
+  }
+}

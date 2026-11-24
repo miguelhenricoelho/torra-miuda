@@ -1,0 +1,16 @@
+---
+import './regua.css';
+
+const { ponto, pontoNome = '', compacta = false, grande = false } = Astro.props;
+const posicao = Math.round(Math.min(Math.max(ponto, 0), 1) * 100);
+const descricao = pontoNome ? `Ponto da torra: ${pontoNome}` : 'Ponto da torra';
+---
+
+<figure class:list={['regua', { 'regua--compacta': compacta, 'regua--grande': grande }]} style={`--ponto: ${posicao}%`}>
+  <div class="regua__barra" role="img" aria-label={`${descricao}, numa régua que vai do grão cru à torra escura.`}>
+    <span class="regua__marcador" aria-hidden="true"></span>
+  </div>
+  <figcaption class="regua__rotulos" aria-hidden="true">
+    <span>Cru</span><span>Clara</span><span>Média</span><span>Escura</span>
+  </figcaption>
+</figure>

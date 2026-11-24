@@ -1,0 +1,27 @@
+---
+import { TITULO, PASSOS } from './conteudo.js';
+import TorraData from '../proxima-torra/torra-data.astro';
+import './como-funciona.css';
+---
+
+<section class="como-funciona" aria-labelledby="como-titulo">
+  <div class="conteiner como-funciona__grade">
+    <div class="como-funciona__cabeca">
+      <h2 id="como-titulo">{TITULO}</h2>
+      <p class="como-funciona__agora">Pedindo agora: torra de <TorraData /></p>
+    </div>
+    <ol class="como-funciona__passos">
+      {
+        PASSOS.map((passo, indice) => (
+          <li>
+            <span class="como-funciona__numero numero" aria-hidden="true">{indice + 1}</span>
+            <div>
+              <h3>{passo.titulo}</h3>
+              <p>{passo.texto}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

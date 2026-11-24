@@ -1,0 +1,38 @@
+.erro {
+  position: relative;
+  overflow: hidden;
+  min-height: 70svh;
+  display: grid;
+  align-items: center;
+}
+.erro__curvas {
+  position: absolute;
+  inset: 0;
+  color: var(--cor-musgo-20);
+}
+.erro__curvas-svg {
+  width: 100%;
+  height: 100%;
+}
+.erro__dentro {
+  position: relative;
+  display: grid;
+  gap: var(--esp-4);
+  justify-items: start;
+  padding-block: var(--esp-8);
+}
+.erro h1 {
+  font-size: var(--tam-titulo-pagina);
+  max-width: 18ch;
+}
+.erro p:not(.rotulo) {
+  max-width: 40ch;
+  font-size: var(--tam-texto-maior);
+}
+.erro__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-3) var(--esp-5);
+  margin-top: var(--esp-3);
+}

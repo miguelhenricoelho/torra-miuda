@@ -1,0 +1,24 @@
+---
+import Regua from '../regua/regua.astro';
+import Revisar from '../revisar/revisar.astro';
+import { TEXTOS } from './conteudo.js';
+import './torra-clara.css';
+---
+
+<section class="torra-clara fundo-escuro" aria-labelledby="torra-titulo">
+  <div class="conteiner torra-clara__grade">
+    <div class="torra-clara__texto">
+      <p class="rotulo">A pergunta favorita</p>
+      <h2 id="torra-titulo">{TEXTOS.titulo}</h2>
+      <Revisar as="p">{TEXTOS.resposta}</Revisar>
+      <p class="torra-clara__frase">E qual é o melhor? <em>O melhor é o que você gosta.</em></p>
+    </div>
+    <div class="torra-clara__regua">
+      <Regua ponto={0.55} pontoNome="média" grande />
+      <div class="torra-clara__notas">
+        <p><strong>Mais clara</strong>mais do sítio, mais leve</p>
+        <p><strong>Mais escura</strong>mais corpo, mais torra</p>
+      </div>
+    </div>
+  </div>
+</section>

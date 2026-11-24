@@ -1,0 +1,16 @@
+---
+import { SECOES } from './conteudo.js';
+import './privacidade.css';
+---
+
+<div class="privacidade conteiner" data-revisar>
+  {
+    SECOES.map((secao) => (
+      <section>
+        <h2>{secao.titulo}</h2>
+        {secao.paragrafos.map((paragrafo) => <p>{paragrafo}</p>)}
+      </section>
+    ))
+  }
+  <p class="privacidade__data">Atualizado em novembro de 2026.</p>
+</div>

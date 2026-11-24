@@ -1,0 +1,82 @@
+.torra {
+  display: grid;
+  gap: var(--esp-4);
+  max-width: 48rem;
+}
+.torra .painel-abas,
+.torra .painel-aviso,
+.torra .painel-erro {
+  margin-bottom: 0;
+}
+.torra__total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--esp-4);
+  padding-bottom: var(--esp-3);
+  border-bottom: var(--linha);
+}
+.torra__total-numero {
+  font-size: var(--tam-numero);
+  font-weight: 600;
+  line-height: 1;
+}
+.torra__lista {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--esp-3);
+}
+.torra-cafe {
+  display: grid;
+  gap: var(--esp-2);
+  padding: var(--esp-4) var(--esp-5);
+  border-radius: var(--raio-3);
+  background: var(--cor-nevoa-funda);
+}
+.torra-cafe__topo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--esp-4);
+}
+.torra-cafe__nome {
+  font-size: var(--tam-h3);
+}
+.torra-cafe__peso {
+  font-size: var(--tam-h3);
+  font-weight: 600;
+}
+/* A régua da torra do site, com a marca do ponto de cada café */
+.torra-cafe__regua {
+  position: relative;
+  height: 6px;
+  border-radius: 6px;
+  background: var(--regua-gradiente);
+  margin-block: var(--esp-2);
+}
+.torra-cafe__ponto {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--ponto) * 100%);
+  width: 16px;
+  height: 16px;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: var(--cor-nevoa);
+  border: 3px solid var(--cor-mata);
+}
+.torra-cafe__pacotes {
+  color: var(--cor-mata-clara);
+}
+.torra__marcar {
+  justify-self: start;
+}
+.torra__confirmar {
+  display: grid;
+  gap: var(--esp-3);
+  padding: var(--esp-4);
+  border-left: 3px solid var(--cor-musgo);
+  background: var(--cor-nevoa-funda);
+  border-radius: 0 var(--raio-2) var(--raio-2) 0;
+}

@@ -1,0 +1,10 @@
+---
+// A data da próxima torra no meio de um texto: sai pronta no HTML e é recalculada no navegador
+import { proximaTorra, agoraEmBrasilia } from './proxima-torra.js';
+
+const { classe = 'manuscrito', campo = 'texto' } = Astro.props;
+const torra = proximaTorra(agoraEmBrasilia());
+const valor = { texto: torra?.texto, entrega: torra?.textoEntrega }[campo];
+---
+
+<span class={classe} data-torra={campo}>{valor}</span>

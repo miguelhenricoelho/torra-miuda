@@ -1,0 +1,77 @@
+---
+import Layout from '../../layout/layout.astro';
+import Produto from '../../produto/produto.astro';
+import ProximaTorra from '../../proxima-torra/proxima-torra.astro';
+import FichaTecnica from '../../ficha-tecnica/ficha-tecnica.astro';
+import Catalogo from '../../catalogo/catalogo.astro';
+import Compra from '../../compra/compra.jsx';
+import { listarLotes, sitioDoLote, CATALOGO_DE_EXEMPLO } from '../../services/catalogo.js';
+import { NOME_PERFIL, CONFIG, nomeHtml } from '../../dados/dados.js';
+import { linkWhatsapp, MENSAGENS } from '../../whatsapp/whatsapp.js';
+import '../../catalogo/catalogo.css';
+
+export function getStaticPaths() {
+  return listarLotes().map((lote) => ({ params: { slug: lote.slug }, props: { lote } }));
+}
+
+const { lote } = Astro.props;
+const sitio = sitioDoLote(lote);
+const esgotado = lote.estado === 'esgotado';
+const perfil = `${NOME_PERFIL[lote.perfil]}${lote.leite ? ' · bom com leite' : ' · melhor puro'}${lote.espresso ? ' · vai no espresso' : ''}`;
+const produto = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: `${lote.nome} · ${sitio?.nome ?? 'Serra de Baturité'}`,
+  description: lote.simples,
+  brand: { '@type': 'Brand', name: 'Torra Miúda' },
+  offers: [250, 1000].map((peso) => ({
+    '@type': 'Offer',
+    name: peso === 1000 ? '1 kg' : '250 g',
+    price: lote.precos[peso].toFixed(2),
+    priceCurrency: 'BRL',
+    availability: esgotado ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
+    url: `${CONFIG.site}/cafes/${lote.slug}`,
+  })),
+};
+import { fotoDoLote } from '../../fotos/fotos.js';
+---
+
+<Layout
+  titulo={`${lote.nome}, ${sitio?.nome ?? 'Serra de Baturité'}`}
+  descricao={`${lote.simples} Café especial da Serra de Baturité, ${NOME_PERFIL[lote.perfil].toLowerCase()}, em 250 g ou 1 kg, torrado depois do seu pedido.`}
+  dados={[produto]}
+  mensagemWhatsapp={MENSAGENS.ajudaNoCafe(lote.nome)}
+  classe="pagina-interna"
+>
+  <Produto
+    trilha={[{ href: '/cafes', rotulo: 'Cafés' }, { rotulo: lote.nome, html: nomeHtml(lote.nome) }]}
+    legendaFoto={`Foto: o pacote de 250 g do ${lote.nome}, de frente, com luz natural (os pacotes novos chegam em janeiro)`}
+    foto={fotoDoLote(lote)}
+    transicao={`foto-${lote.slug}`}
+  >
+    {CATALOGO_DE_EXEMPLO && <span class="selo-exemplo">Exemplo: dados do lote ainda não enviados</span>}
+    <h1 class="produto__nome" set:html={nomeHtml(lote.nome)} />
+    <p class="produto__sitio">{sitio?.nome} · {sitio?.produtor ?? 'produtor a confirmar'}</p>
+    <section class="produto__simples" aria-labelledby="simples-titulo">
+      <h2 id="simples-titulo" class="rotulo">Em palavras simples</h2>
+      <p>{lote.simples}</p>
+      <p class="produto__perfil">{perfil}</p>
+    </section>
+    {!esgotado && <ProximaTorra rotulo="Entra na torra de" mostrarEntrega />}
+    <Compra
+      client:idle
+      tipo="cafe"
+      id={lote.id}
+      precos={lote.precos}
+      esgotado={esgotado}
+      duvida={{ href: linkWhatsapp(MENSAGENS.duvidaCafe(lote.nome)), rotulo: 'Tirar dúvida sobre este café' }}
+      avisarVolta={linkWhatsapp(MENSAGENS.avisarVolta(lote.nome))}
+    />
+  </Produto>
+  <FichaTecnica lote={lote} sitio={sitio} />
+  <section class="conteiner outros-cafes" aria-labelledby="outros-titulo">
+    <h2 id="outros-titulo">Outros cafés desta colheita</h2>
+    <Catalogo mostrarCabeca={false} excluir={lote.id} />
+  </section>
+</Layout>
+

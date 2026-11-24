@@ -1,0 +1,11 @@
+---
+import { svgGrao } from '../grao/grao.js';
+import './logo.css';
+
+const { escuro = false } = Astro.props;
+---
+
+<a class:list={['logo', { 'logo--escuro': escuro }]} href="/">
+  <span class="so-leitor">Torra Miúda, página inicial</span>
+  <span class="logo__nome" aria-hidden="true">Torra M<span class="logo__i">ı<Fragment set:html={svgGrao({ classe: 'logo__grao' })} /></span>úda</span>
+</a>

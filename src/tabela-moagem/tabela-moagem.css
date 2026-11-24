@@ -1,0 +1,29 @@
+/* Tabela de moagem (plano B da ferramenta) */
+.tabela-moagem {
+  margin-top: var(--esp-7);
+  display: grid;
+  gap: var(--esp-4);
+}
+.tabela-moagem h3 {
+  font-size: var(--tam-h3);
+}
+.tabela-moagem table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.tabela-moagem th,
+.tabela-moagem td {
+  text-align: left;
+  padding: var(--esp-3) var(--esp-2);
+  border-bottom: var(--linha);
+  vertical-align: top;
+}
+.tabela-moagem th {
+  font-size: var(--tam-rotulo);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--cor-mata-clara);
+}
+.tabela-moagem td:first-child {
+  font-weight: 600;
+}

@@ -1,0 +1,31 @@
+---
+import Revisar from '../revisar/revisar.astro';
+import { PERGUNTAS } from './conteudo.js';
+import './faq.css';
+
+const { titulo = 'O que as pessoas mais perguntam à Iara' } = Astro.props;
+---
+
+<section class="faq" aria-labelledby="faq-titulo">
+  <div class="conteiner faq__grade">
+    <h2 id="faq-titulo">{titulo}</h2>
+    <div class="faq__lista">
+      {
+        PERGUNTAS.map((item) => (
+          <details>
+            <summary>{item.pergunta}</summary>
+            <p>
+              {item.revisar ? <Revisar>{item.resposta}</Revisar> : item.resposta}
+              {item.link && (
+                <>
+                  {' '}
+                  <a href={item.link.href}>{item.link.rotulo}</a>
+                </>
+              )}
+            </p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

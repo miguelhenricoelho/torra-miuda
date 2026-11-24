@@ -1,0 +1,22 @@
+---
+import Layout from '../layout/layout.astro';
+import PalcoPagina from '../palco-pagina/palco-pagina.astro';
+import Historia from '../historia/historia.astro';
+import CtaFinal from '../cta-final/cta-final.astro';
+import { PALCO } from '../historia/conteudo.js';
+import { FOTOS } from '../fotos/fotos.js';
+import '../provas/provas.css';
+---
+
+<Layout titulo="Nossa história" descricao="A Torra Miúda começou em 2019, numa torradeira de 1 quilo, na garagem. A história da Iara, do avô cafeicultor em Guaramiranga e da Velhinha.">
+  <PalcoPagina rotulo={PALCO.rotulo} titulo={PALCO.titulo} apoio={PALCO.apoio} legendaFoto={PALCO.legendaFoto} foto={FOTOS.torra} semente={17} />
+  <div class="folha">
+    <Historia />
+    <CtaFinal titulo="Prove o café da serra. Ele entra na torra de" />
+  </div>
+</Layout>
+
+<script>
+  import { iniciarFolha } from '../folha/folha.js';
+  iniciarFolha();
+</script>

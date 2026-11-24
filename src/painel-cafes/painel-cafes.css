@@ -1,0 +1,217 @@
+.cafes-painel__topo {
+  margin-bottom: var(--esp-4);
+}
+.cafes-painel__topo .icone {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: inline-flex;
+}
+.cafes-painel__lista {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--esp-3);
+}
+@media (min-width: 760px) {
+  .cafes-painel__lista {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.cafe-cartao {
+  display: grid;
+  align-content: start;
+  gap: var(--esp-2);
+  padding: var(--esp-4) var(--esp-5) var(--esp-5);
+  border-radius: var(--raio-3);
+  background: var(--cor-nevoa-funda);
+}
+.cafe-cartao .botao {
+  justify-self: start;
+  margin-top: var(--esp-2);
+}
+.cafe-cartao__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-3);
+}
+.cafe-cartao__nome {
+  font-size: var(--tam-h3);
+}
+.cafe-cartao__estado {
+  padding: 0.125rem var(--esp-2);
+  border-radius: var(--raio-1);
+  font-size: var(--tam-rotulo);
+  font-weight: 600;
+  background: var(--cor-musgo);
+  color: var(--cor-nevoa);
+}
+.cafe-cartao[data-estado='esgotado'] .cafe-cartao__estado {
+  background: transparent;
+  color: var(--cor-cobre-fundo);
+  border: 1.5px solid var(--cor-cobre-fundo);
+}
+.cafe-cartao[data-estado='oculto'] .cafe-cartao__estado {
+  background: transparent;
+  color: var(--cor-mata-clara);
+  border: 1.5px dashed var(--cor-mata-clara);
+}
+.cafe-cartao__desc,
+.cafe-cartao__info {
+  color: var(--cor-mata-clara);
+}
+.cafe-cartao__precos {
+  font-weight: 600;
+}
+.cafe-cartao__regua {
+  position: relative;
+  height: 6px;
+  border-radius: 6px;
+  background: var(--regua-gradiente);
+  margin-block: var(--esp-2);
+}
+.cafe-cartao__regua span {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--ponto) * 100%);
+  width: 14px;
+  height: 14px;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: var(--cor-nevoa);
+  border: 3px solid var(--cor-mata);
+}
+
+/* Formulário */
+.cafe-form {
+  display: grid;
+  gap: var(--esp-4);
+}
+.cafe-form__dupla {
+  display: grid;
+  gap: var(--esp-4);
+}
+@media (min-width: 520px) {
+  .cafe-form__dupla {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+.campo__erro {
+  color: var(--cor-cobre-fundo);
+  font-weight: 600;
+}
+.campo__entrada[aria-invalid='true'] {
+  border-color: var(--cor-cobre-fundo);
+}
+.campo__entrada:disabled {
+  background: var(--cor-nevoa-funda);
+  color: var(--cor-mata-clara);
+}
+.cafe-form__preco {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-2);
+  font-weight: 600;
+}
+.cafe-form__alternar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-2) var(--esp-5);
+}
+
+/* Régua de torra como controle deslizante */
+.cafe-form__regua {
+  appearance: none;
+  width: 100%;
+  height: var(--toque);
+  background: transparent;
+  cursor: pointer;
+}
+.cafe-form__regua::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 8px;
+  background: var(--regua-gradiente);
+}
+.cafe-form__regua::-moz-range-track {
+  height: 8px;
+  border-radius: 8px;
+  background: var(--regua-gradiente);
+}
+.cafe-form__regua::-webkit-slider-thumb {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  margin-top: -8px;
+  border-radius: 50%;
+  background: var(--cor-nevoa);
+  border: 3px solid var(--cor-mata);
+}
+.cafe-form__regua::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--cor-nevoa);
+  border: 3px solid var(--cor-mata);
+}
+.cafe-form__regua:focus-visible {
+  outline: 2px solid var(--cor-musgo);
+  outline-offset: 2px;
+}
+.cafe-form__regua-legenda {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--tam-rotulo);
+  color: var(--cor-mata-clara);
+  font-weight: 600;
+}
+
+.cafe-form__estados {
+  display: grid;
+  gap: var(--esp-2);
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.cafe-form__estados legend {
+  margin-bottom: var(--esp-2);
+  padding: 0;
+}
+.cafe-estado {
+  position: relative;
+  display: flex;
+  gap: var(--esp-3);
+  align-items: flex-start;
+  padding: var(--esp-3) var(--esp-4);
+  border: 1.5px solid var(--cor-mata-14);
+  border-radius: var(--raio-2);
+  cursor: pointer;
+}
+.cafe-estado input {
+  appearance: none;
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.125rem;
+  border: 1.5px solid var(--cor-mata-clara);
+  border-radius: 50%;
+  background: var(--cor-nevoa);
+  cursor: pointer;
+}
+.cafe-estado input:checked {
+  border: 6px solid var(--cor-musgo);
+}
+.cafe-estado:has(input:checked) {
+  border-color: var(--cor-musgo);
+  background: var(--cor-nevoa-funda);
+}
+.cafe-estado input:focus-visible {
+  outline: 2px solid var(--cor-musgo);
+  outline-offset: 2px;
+}
+.cafe-estado__texto {
+  display: grid;
+}
+.cafe-estado__texto span {
+  color: var(--cor-mata-clara);
+}

@@ -1,0 +1,41 @@
+---
+import Layout from '../layout/layout.astro';
+import Produto from '../produto/produto.astro';
+import ProximaTorra from '../proxima-torra/proxima-torra.astro';
+import Compra from '../compra/compra.jsx';
+import CtaFinal from '../cta-final/cta-final.astro';
+import { KIT, CONFIG } from '../dados/dados.js';
+import { linkWhatsapp, MENSAGENS } from '../whatsapp/whatsapp.js';
+import { TEXTOS } from '../kit-secao/conteudo.js';
+import { FOTOS } from '../fotos/fotos.js';
+import '../kit-secao/kit-secao.css';
+
+const produto = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Kit de presente Torra Miúda',
+  description: TEXTOS.texto,
+  brand: { '@type': 'Brand', name: 'Torra Miúda' },
+  offers: { '@type': 'Offer', price: KIT.preco.toFixed(2), priceCurrency: 'BRL', availability: 'https://schema.org/InStock', url: `${CONFIG.site}/kit-de-presente` },
+};
+---
+
+<Layout titulo="Kit de presente" descricao="Três cafés da colheita da Serra de Baturité, escolhidos pela mestre de torra, com a data da torra escrita à mão e o cartão do sítio. R$ 129." dados={[produto]} classe="pagina-interna">
+  <Produto trilha={[{ href: '/cafes', rotulo: 'Cafés' }, { rotulo: 'Kit de presente' }]} legendaFoto={TEXTOS.legendaFoto} foto={FOTOS.coador} transicao="foto-kit" semente={14}>
+    <p class="rotulo">Kit de presente</p>
+    <h1 class="produto__nome kit-pagina__titulo">{TEXTOS.titulo}</h1>
+    <p class="kit__preco numero">R$ 129</p>
+    <div class="produto__simples">
+      <p>Os três mudam a cada colheita.</p>
+      <p class="produto__perfil">Cada pacote vai com a data da torra escrita à mão e o cartão do sítio, com o nome do produtor e a altitude.</p>
+    </div>
+    <blockquote class="kit__elogio">
+      <p>“{TEXTOS.elogio}”</p>
+      <footer>Cliente da Torra Miúda</footer>
+    </blockquote>
+    <ProximaTorra rotulo="Entra na torra de" mostrarEntrega />
+    <Compra client:idle tipo="kit" id="kit" preco={KIT.preco} duvida={{ href: linkWhatsapp(MENSAGENS.duvidaKit()), rotulo: 'Tirar dúvida sobre o kit' }} />
+  </Produto>
+  <div class="kit-pagina__espaco"></div>
+  <CtaFinal titulo="Para quem vai ganhar, o kit entra na torra de" principal={{ href: '#conteudo', rotulo: 'Escolher a moagem do kit' }} secundario={{ href: '/cafes', rotulo: 'Ver os cafés' }} />
+</Layout>

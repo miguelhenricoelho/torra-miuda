@@ -1,0 +1,15 @@
+---
+const { titulo = 'Escolha hoje e o seu café entra na torra de', principal = { href: '/cafes', rotulo: 'Escolher meu café' }, secundario = { href: '/qual-e-o-seu-cafe', rotulo: 'Descobrir qual é o meu' }, comData = true } = Astro.props;
+import TorraData from '../proxima-torra/torra-data.astro';
+import './cta-final.css';
+---
+
+<section class="cta-final fundo-escuro" aria-labelledby="cta-titulo">
+  <div class="conteiner cta-final__dentro">
+    <h2 id="cta-titulo">{titulo}{comData && <> <TorraData classe="cta-final__data" />.</>}</h2>
+    <div class="cta-final__acoes">
+      <a class="botao botao--claro botao--grande" href={principal.href}>{principal.rotulo}</a>
+      {secundario && <a class="botao botao--contorno-claro botao--grande" href={secundario.href}>{secundario.rotulo}</a>}
+    </div>
+  </div>
+</section>

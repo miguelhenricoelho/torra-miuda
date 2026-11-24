@@ -1,0 +1,28 @@
+---
+import ProximaTorra from '../proxima-torra/proxima-torra.astro';
+import Moldura from '../moldura/moldura.astro';
+import Icone from '../icone/icone.astro';
+import { HERO } from './conteudo.js';
+import { FOTOS } from '../fotos/fotos.js';
+import '../folha/folha.css';
+import './hero.css';
+---
+
+<section class="palco hero" aria-labelledby="hero-titulo">
+  <div class="palco__veu" aria-hidden="true"></div>
+  <div class="conteiner palco__dentro hero__dentro">
+    <div class="hero__texto">
+      <p class="hero__origem">{HERO.origem}</p>
+      <h1 id="hero-titulo">{HERO.titulo}</h1>
+      <p class="hero__apoio">{HERO.apoio}</p>
+      <ProximaTorra />
+      <div class="hero__acoes">
+        <a class="botao botao--grande" href="/cafes">Escolher meu café</a>
+        <a class="link-seta" href="/qual-e-o-seu-cafe">Descobrir qual é o meu <Icone nome="seta" /></a>
+      </div>
+    </div>
+    <div class="hero__imagem">
+      <Moldura legenda={HERO.legendaFoto} foto={FOTOS.hero} prioridade tamanhos="(min-width: 1024px) 42vw, 92vw" semente={9} proporcao={null} classe="hero__moldura" />
+    </div>
+  </div>
+</section>

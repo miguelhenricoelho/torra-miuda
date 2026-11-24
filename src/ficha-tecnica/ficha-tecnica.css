@@ -1,0 +1,52 @@
+.ficha-tecnica {
+  margin-top: var(--esp-secao);
+  padding-top: var(--esp-6);
+  border-top: 1.5px solid var(--cor-mata);
+  display: grid;
+  gap: var(--esp-6);
+}
+.ficha-tecnica__cabeca {
+  display: grid;
+  gap: var(--esp-2);
+}
+.ficha-tecnica__cabeca h2 {
+  font-size: var(--tam-h2-calmo);
+}
+.ficha-tecnica__cabeca p {
+  color: var(--cor-mata-clara);
+}
+.ficha-tecnica__grade {
+  display: grid;
+  gap: var(--esp-6);
+  align-items: center;
+}
+.ficha-tecnica__dados {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.ficha-tecnica__dados div {
+  padding: var(--esp-3) var(--esp-3) var(--esp-3) 0;
+  border-bottom: var(--linha);
+}
+.ficha-tecnica__dados dt {
+  font-size: var(--tam-rotulo);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cor-mata-clara);
+}
+.ficha-tecnica__dados dd {
+  font-weight: 500;
+}
+@media (min-width: 1024px) {
+  .ficha-tecnica {
+    grid-template-columns: 4fr 8fr;
+    gap: var(--esp-8);
+  }
+  .ficha-tecnica__grade {
+    grid-template-columns: 7fr 5fr;
+  }
+  .ficha-tecnica__dados {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

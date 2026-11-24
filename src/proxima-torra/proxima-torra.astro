@@ -1,0 +1,15 @@
+---
+// Cartão "Próxima torra": o texto sai pronto no HTML (calculado no build) e é atualizado no navegador.
+import { proximaTorra, agoraEmBrasilia } from './proxima-torra.js';
+import './proxima-torra.css';
+
+const { rotulo = 'Próxima torra', mostrarEntrega = false } = Astro.props;
+const torra = proximaTorra(agoraEmBrasilia());
+---
+
+<div class="proxima-torra" data-torra-rotulo>
+  <p class="rotulo">{rotulo}</p>
+  <p class="manuscrito" data-torra="texto">{torra?.texto}</p>
+  <p class="proxima-torra__aviso" data-torra="aviso">{torra?.aviso}</p>
+  {mostrarEntrega && <p class="proxima-torra__aviso">Entrega em Fortaleza: <span data-torra="entrega">{torra?.textoEntrega}</span>.</p>}
+</div>

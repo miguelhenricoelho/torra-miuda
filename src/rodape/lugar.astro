@@ -1,0 +1,23 @@
+---
+// Cartão de um endereço com o mapa que só carrega no clique (Módulo D, D.2)
+import Icone from '../icone/icone.astro';
+import { linkWhatsapp, MENSAGENS } from '../whatsapp/whatsapp.js';
+import { mapsBusca, mapsRota, mapsEmbed } from './conteudo.js';
+
+const { lugar, titulo = 'h3' } = Astro.props;
+const Titulo = titulo;
+---
+
+<article class="lugar">
+  <Titulo class="lugar__nome">{lugar.nome}</Titulo>
+  <p class="lugar__endereco">{lugar.endereco}</p>
+  <p class="lugar__horario">{lugar.horario}</p>
+  <div class="lugar__mapa" data-mapa-embed={mapsEmbed(lugar.endereco)} data-mapa-titulo={`Mapa: ${lugar.endereco}`}>
+    <button type="button" class="botao botao--contorno-claro" data-ver-mapa><Icone nome="mapa" />Ver mapa</button>
+  </div>
+  <p class="lugar__links">
+    <a href={mapsBusca(lugar.endereco)} target="_blank" rel="noopener">Abrir no Maps</a>
+    <a href={mapsRota(lugar.endereco)} target="_blank" rel="noopener">Como chegar</a>
+    {lugar.wa && <a href={linkWhatsapp(MENSAGENS[lugar.wa]())} target="_blank" rel="noopener" data-wa>{lugar.rotuloWa}</a>}
+  </p>
+</article>

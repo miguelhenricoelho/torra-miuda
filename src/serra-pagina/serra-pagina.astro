@@ -1,0 +1,66 @@
+---
+import Moldura from '../moldura/moldura.astro';
+import MapaSerra from '../mapa-serra/mapa-serra.astro';
+import { listarSitios, lotesDoSitio, CATALOGO_DE_EXEMPLO } from '../services/catalogo.js';
+import { nomeHtml } from '../dados/dados.js';
+import { CAMINHO, COLHEITA } from './conteudo.js';
+import './serra-pagina.css';
+
+const sitios = listarSitios();
+import { fotoDoSitio } from '../fotos/fotos.js';
+---
+
+<section class="serra-pagina__mapa" aria-labelledby="serra-mapa-titulo">
+  <div class="conteiner serra-pagina__grade">
+    <div class="serra-pagina__texto">
+      <h2 id="serra-mapa-titulo">Onde fica cada sítio</h2>
+      <p>{COLHEITA}</p>
+      {CATALOGO_DE_EXEMPLO && <span class="selo-exemplo">Exemplo: posições e nomes dos sítios a confirmar</span>}
+    </div>
+    <MapaSerra />
+  </div>
+</section>
+
+<section class="serra-pagina__sitios" aria-labelledby="sitios-titulo">
+  <div class="conteiner">
+    <h2 id="sitios-titulo">Os seis sítios</h2>
+    <ul class="sitios">
+      {
+        sitios.map((sitio) => {
+          const lotes = lotesDoSitio(sitio.numero);
+          return (
+            <li class="sitio">
+              <Moldura legenda={`Foto: o ${sitio.nome} e o produtor`} foto={fotoDoSitio(sitio.numero)} tamanhos="(min-width: 900px) 30vw, 92vw" semente={30 + sitio.numero} proporcao="4 / 3" />
+              <h3 set:html={nomeHtml(sitio.nome)} />
+              <p class="sitio__dados">{sitio.produtor ?? 'Produtor a confirmar'} · {sitio.altitude ? `${sitio.altitude} m` : 'altitude a confirmar'}</p>
+              <p>
+                {lotes.length ? (
+                  lotes.map((lote) => <a href={`/cafes/${lote.slug}`}>Nesta colheita: <Fragment set:html={nomeHtml(lote.nome)} /></a>)
+                ) : (
+                  <span class="sitio__sem">Sem lote nesta colheita</span>
+                )}
+              </p>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>
+
+<section class="serra-pagina__caminho" aria-labelledby="caminho-titulo">
+  <div class="conteiner">
+    <h2 id="caminho-titulo">Do sítio ao seu pacote</h2>
+    <ol class="caminho">
+      {
+        CAMINHO.map((etapa, indice) => (
+          <li>
+            <span class="caminho__numero numero" aria-hidden="true">{indice + 1}</span>
+            <h3>{etapa.titulo}</h3>
+            <p>{etapa.texto}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

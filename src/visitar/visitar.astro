@@ -1,0 +1,83 @@
+---
+import { formatarDia } from '../proxima-torra/proxima-torra.js';
+import Lugar from '../rodape/lugar.astro';
+import Icone from '../icone/icone.astro';
+import { LUGARES } from '../rodape/conteudo.js';
+import { CONFIG } from '../dados/dados.js';
+import { linkWhatsapp, MENSAGENS } from '../whatsapp/whatsapp.js';
+import './visitar.css';
+
+// Estados da visita guiada: com data e vagas, lotada, sem data marcada (a data vem do painel na parte 2)
+const visita = CONFIG.visita;
+// Vagas que sobram = vagas da visita menos os inscritos (os dois vêm do painel)
+const restantes = visita.vagas == null ? null : Math.max(0, visita.vagas - (visita.inscritos ?? 0));
+const dataTexto = visita.data ? formatarDia(new Date(`${visita.data}T12:00:00Z`)) : null;
+const estado = !visita.data ? 'sem-data' : restantes === 0 ? 'lotada' : 'aberta';
+---
+
+<section class="visitar" aria-label="Endereços">
+  <div class="conteiner visitar__lugares fundo-escuro">
+    {LUGARES.map((lugar) => <Lugar lugar={lugar} titulo="h2" />)}
+  </div>
+</section>
+
+<section class="visita" aria-labelledby="visita-titulo">
+  <div class="conteiner visita__grade">
+    <div class="visita__texto">
+      <p class="rotulo">Visita guiada</p>
+      <h2 id="visita-titulo">Uma vez por mês, a torrefação abre para uma visita guiada com degustação</h2>
+      <p>Você conhece a torradeira, a Velhinha e o jeito da Iara decidir o ponto de cada lote.</p>
+    </div>
+    <div class="visita__estado" data-estado={estado}>
+      {
+        estado === 'aberta' && (
+          <form class="visita__form" data-visita data-data={dataTexto}>
+            <p class="visita__data">Próxima visita: <span class="manuscrito">{dataTexto}</span></p>
+            {restantes != null && <p>{restantes} {restantes === 1 ? 'vaga' : 'vagas'}</p>}
+            <div class="campo">
+              <label class="campo__rotulo" for="visita-pessoas">Quantas pessoas?</label>
+              <input class="campo__entrada" id="visita-pessoas" type="number" inputmode="numeric" min="1" max={restantes ?? undefined} value="1" />
+            </div>
+            <a class="botao botao--grande" href={linkWhatsapp(MENSAGENS.visitaGuiada(dataTexto, 1))} target="_blank" rel="noopener" data-wa data-visita-enviar>
+              <Icone nome="whatsapp" />Quero participar
+            </a>
+          </form>
+        )
+      }
+      {
+        estado === 'lotada' && (
+          <>
+            <p class="visita__data">A visita de <span class="manuscrito">{dataTexto}</span> está lotada.</p>
+            <a class="botao botao--grande" href={linkWhatsapp(MENSAGENS.avisarVisita())} target="_blank" rel="noopener" data-wa>
+              <Icone nome="whatsapp" />Quero ser avisado da próxima
+            </a>
+          </>
+        )
+      }
+      {
+        estado === 'sem-data' && (
+          <>
+            <p class="visita__data">A próxima data ainda não foi marcada.</p>
+            <p>Mande uma mensagem e a gente avisa pelo WhatsApp quando a data abrir.</p>
+            <a class="botao botao--grande" href={linkWhatsapp(MENSAGENS.avisarVisita())} target="_blank" rel="noopener" data-wa>
+              <Icone nome="whatsapp" />Quero ser avisado da próxima
+            </a>
+          </>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { linkWhatsapp, MENSAGENS } from '../whatsapp/whatsapp.js';
+  const formulario = document.querySelector('[data-visita]');
+  if (formulario) {
+    const campo = formulario.querySelector('#visita-pessoas');
+    const botao = formulario.querySelector('[data-visita-enviar]');
+    campo.addEventListener('input', () => {
+      const pessoas = Math.max(1, Number(campo.value) || 1);
+      botao.href = linkWhatsapp(MENSAGENS.visitaGuiada(formulario.dataset.data, pessoas));
+    });
+  }
+</script>

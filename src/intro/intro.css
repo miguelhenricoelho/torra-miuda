@@ -1,0 +1,58 @@
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.intro__fundo {
+  position: absolute;
+  inset: 0;
+  background: var(--cor-nevoa);
+}
+.intro__curvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--cor-musgo-20);
+}
+.intro__grao {
+  position: relative;
+  width: clamp(6rem, 18vw, 9rem);
+  aspect-ratio: 1;
+  will-change: transform;
+}
+.intro__grao svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.intro .grao__clara,
+.intro .grao__media,
+.intro .grao__fenda {
+  opacity: 0;
+}
+.intro__pular {
+  position: absolute;
+  top: max(var(--esp-4), env(safe-area-inset-top));
+  right: max(var(--esp-4), env(safe-area-inset-right));
+  min-height: var(--toque);
+  padding: 0.5rem 1rem;
+  border: 1.5px solid var(--cor-mata-clara);
+  border-radius: var(--raio-2);
+  background: var(--cor-nevoa);
+  color: var(--cor-mata);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Cobre a página entre o primeiro desenho e o início da intro (marcado no <head>) */
+[data-intro='pendente'] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 79;
+  background: var(--cor-nevoa);
+}

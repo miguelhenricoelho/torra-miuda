@@ -1,0 +1,17 @@
+/* Páginas internas: conteúdo começa abaixo do topo fixo */
+.pagina-interna main {
+  padding-top: calc(var(--altura-topo) + var(--altura-faixa));
+}
+main:focus {
+  outline: none;
+}
+/* Espaço para o botão flutuante não cobrir o fim da última seção antes do rodapé */
+@media (max-width: 1023px) {
+  main > :last-child {
+    padding-bottom: calc(var(--esp-secao) + var(--wa-flutuante) + var(--esp-5));
+  }
+}
+
+.pagina-interna .campanha:not([hidden]) ~ main {
+  padding-top: 0;
+}

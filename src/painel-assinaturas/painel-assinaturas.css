@@ -1,0 +1,56 @@
+.assinaturas__resumo {
+  font-size: var(--tam-texto-maior);
+  margin-bottom: var(--esp-4);
+}
+.assinaturas__lista {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--esp-3);
+}
+.assinatura {
+  display: grid;
+  gap: var(--esp-3);
+  padding: var(--esp-4) var(--esp-5);
+  border-radius: var(--raio-3);
+  background: var(--cor-nevoa-funda);
+}
+.assinatura__nome {
+  font-size: var(--tam-h3);
+}
+.assinatura__info {
+  color: var(--cor-mata-clara);
+}
+.assinatura__mes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-1) var(--esp-5);
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.assinatura__mes legend {
+  float: left;
+  margin-right: var(--esp-2);
+  padding: 0;
+}
+.assinatura__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-2);
+}
+.assinatura__confirmar {
+  display: grid;
+  gap: var(--esp-3);
+}
+@media (min-width: 900px) {
+  .assinatura {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: var(--esp-5);
+  }
+  .assinatura .painel-erro {
+    grid-column: 1 / -1;
+  }
+}

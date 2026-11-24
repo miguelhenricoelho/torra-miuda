@@ -1,0 +1,22 @@
+---
+// Abertura parada das páginas institucionais longas (rolagem estilo PicPay)
+import Moldura from '../moldura/moldura.astro';
+import { nomeHtml } from '../dados/dados.js';
+import '../folha/folha.css';
+import './palco-pagina.css';
+
+const { rotulo, titulo, apoio, legendaFoto, foto = null, semente = 12 } = Astro.props;
+---
+
+<section class="palco palco-pagina" aria-labelledby="palco-titulo">
+  <div class="palco__veu" aria-hidden="true"></div>
+  <div class="conteiner palco__dentro palco-pagina__dentro">
+    <div class="palco-pagina__texto">
+      <p class="rotulo">{rotulo}</p>
+      <h1 id="palco-titulo" set:html={nomeHtml(titulo)} />
+      <p class="palco-pagina__apoio">{apoio}</p>
+      <slot />
+    </div>
+    <Moldura legenda={legendaFoto} foto={foto} prioridade tamanhos="(min-width: 1024px) 42vw, 92vw" semente={semente} proporcao={null} classe="palco-pagina__moldura" />
+  </div>
+</section>
